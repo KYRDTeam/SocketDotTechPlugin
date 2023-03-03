@@ -21,7 +21,8 @@
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook",
     "build:lib": "NODE_ENV=publish rollup -c && npm pack",
-    "chromatic": "npx chromatic --project-token=12c9df8b6cf2"
+    "chromatic": "npx chromatic --project-token=12c9df8b6cf2",
+    "prepare": "npm install && npm run build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
