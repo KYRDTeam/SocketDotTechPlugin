@@ -10,7 +10,6 @@ import { Modal } from "./common/Modal";
 import { setActiveRoute, setIsTxModalOpen } from "../state/modals";
 
 import { usePendingRoutes } from "../hooks/apis";
-import { useTransition } from "@react-spring/web";
 import { TokenDetailsRow } from "./common/TokenDetailsRow";
 
 // Pending Transactions are basically routes that have not been completed yet. User can continue from the previous step whenever he opens the modal again.
@@ -22,14 +21,6 @@ export const PendingTransactions = () => {
   const [totalRoutes, setTotalRoutes] = useState<number>(0);
   const customSettings = useContext(CustomizeContext);
   const { borderRadius } = customSettings.customization;
-
-  const transitions = useTransition(isModalOpen, {
-    from: { y: "100%" },
-    enter: { y: "0" },
-    leave: { y: "100%" },
-    config: { duration: 200 },
-    onReset: () => setIsModalOpen(false),
-  });
 
   // Hook that fetches the routes that are active (routes that have started but have not been completed yet.)
   const { data: activeRoutesData } = usePendingRoutes();
@@ -58,53 +49,50 @@ export const PendingTransactions = () => {
           {totalRoutes} pending
         </button>
 
-        {transitions(
-          (style, item) =>
-            item && (
-              <Modal
-                title="Pending Transactions"
-                closeModal={() => setIsModalOpen(false)}
-                style={style}
-              >
-                <div className="skt-w flex flex-col justify-start p-1 flex-1 overflow-y-auto">
-                  <p className="skt-w text-widget-secondary text-xs px-3 py-2 text-left">
-                    Transaction status is updated every 30 seconds
-                  </p>
+        {isModalOpen && (
+          <Modal
+            title="Pending Transactions"
+            closeModal={() => setIsModalOpen(false)}
+            style={{ display: isModalOpen ? "block" : "none" }}
+          >
+            <div className="skt-w flex flex-col justify-start p-1 flex-1 overflow-y-auto">
+              <p className="skt-w text-widget-secondary text-xs px-3 py-2 text-left">
+                Transaction status is updated every 30 seconds
+              </p>
 
-                  {activeRoutes?.map((route: any) => {
-                    const refuelSourceToken = {
-                      amount: route?.refuel?.fromAmount,
-                      asset: route?.refuel?.fromAsset,
-                    };
-                    const refuelDestToken = {
-                      amount: route?.refuel?.toAmount,
-                      asset: route?.refuel?.toAsset,
-                    };
+              {activeRoutes?.map((route: any) => {
+                const refuelSourceToken = {
+                  amount: route?.refuel?.fromAmount,
+                  asset: route?.refuel?.fromAsset,
+                };
+                const refuelDestToken = {
+                  amount: route?.refuel?.toAmount,
+                  asset: route?.refuel?.toAsset,
+                };
 
-                    return (
-                      <TokenDetailsRow
-                        key={route?.activeRouteId}
-                        onClick={() => openTxModal(route)}
-                        srcDetails={{
-                          token: route?.fromAsset,
-                          amount: route?.fromAmount,
-                        }}
-                        destDetails={{
-                          token: route?.toAsset,
-                          amount: route?.toAmount,
-                        }}
-                        srcRefuel={refuelSourceToken}
-                        destRefuel={refuelDestToken}
-                      />
-                    );
-                  })}
+                return (
+                  <TokenDetailsRow
+                    key={route?.activeRouteId}
+                    onClick={() => openTxModal(route)}
+                    srcDetails={{
+                      token: route?.fromAsset,
+                      amount: route?.fromAmount,
+                    }}
+                    destDetails={{
+                      token: route?.toAsset,
+                      amount: route?.toAmount,
+                    }}
+                    srcRefuel={refuelSourceToken}
+                    destRefuel={refuelDestToken}
+                  />
+                );
+              })}
 
-                  <p className="skt-w text-widget-secondary text-xs px-3 py-2 text-left">
-                    Showing {activeRoutes?.length}/{totalRoutes} active routes
-                  </p>
-                </div>
-              </Modal>
-            )
+              <p className="skt-w text-widget-secondary text-xs px-3 py-2 text-left">
+                Showing {activeRoutes?.length}/{totalRoutes} active routes
+              </p>
+            </div>
+          </Modal>
         )}
       </>
     );

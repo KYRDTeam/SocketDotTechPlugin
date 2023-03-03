@@ -5,7 +5,6 @@ import { useState } from "react";
 import { ChevronDown } from "react-feather";
 import { CustomizeContext } from "../../providers/CustomizeProvider";
 import { Modal } from "../common/Modal";
-import { useTransition } from "@react-spring/web";
 import { SearchBar } from "./SearchBar";
 
 interface Props {
@@ -22,14 +21,6 @@ export const TokenSelect = (props: Props) => {
   const [displayTokens, setDisplayTokens] = useState(null);
   const customSettings = useContext(CustomizeContext);
   const { borderRadius } = customSettings.customization;
-
-  const transitions = useTransition(openTokenList, {
-    from: { y: "100%" },
-    enter: { y: "0" },
-    leave: { y: "100%" },
-    config: { duration: 200 },
-    onReset: () => setOpenTokenList(false),
-  });
 
   // Hook that gives you all the balances for a user on all chains.
   const { data: tokensWithBalances } = useAllTokenBalances();
@@ -124,55 +115,52 @@ export const TokenSelect = (props: Props) => {
         </button>
       )}
 
-      {transitions(
-        (style, item) =>
-          item && (
-            <Modal
-              title="Select Token"
-              closeModal={() => {
-                setOpenTokenList(false);
-                handleSearchInput("");
-              }}
-              style={style}
-            >
-              <div className="skt-w px-1.5 pt-2 mb-2">
-                <SearchBar
-                  searchInput={searchInput}
-                  setSearchInput={setSearchInput}
-                  handleInput={(e) => handleSearchInput(e)}
-                />
-              </div>
-              <div className="skt-w h-full overflow-y-auto p-1.5">
-                {displayTokens?.map((token: Currency) => {
-                  return (
-                    <button
-                      className="skt-w skt-w-input skt-w-button flex hover:bg-widget-secondary items-center p-2 w-full justify-between disabled:opacity-60 disabled:pointer-events-none"
-                      onClick={() => selectToken(token)}
-                      key={token?.address}
-                      style={{ borderRadius: `calc(0.5rem * ${borderRadius})` }}
-                      disabled={tokenToDisable?.address === token?.address}
-                    >
-                      <div className="skt-w flex items-center">
-                        <img
-                          src={token?.logoURI}
-                          className="skt-w w-6 h-6 rounded-full"
-                        />
-                        <div className="skt-w flex flex-col items-start ml-2 text-widget-secondary">
-                          <span className="skt-w text-sm">{token?.symbol}</span>
-                          <span className="skt-w text-xs -mt-0.5">
-                            {token?.name}
-                          </span>
-                        </div>
-                      </div>
-                      <span className="skt-w text-widget-secondary text-xs text-right font-medium">
-                        {showBalance(token)}
+      {openTokenList && (
+        <Modal
+          title="Select Token"
+          closeModal={() => {
+            setOpenTokenList(false);
+            handleSearchInput("");
+          }}
+          style={{ display: openTokenList ? "block" : "none" }}
+        >
+          <div className="skt-w px-1.5 pt-2 mb-2">
+            <SearchBar
+              searchInput={searchInput}
+              setSearchInput={setSearchInput}
+              handleInput={(e) => handleSearchInput(e)}
+            />
+          </div>
+          <div className="skt-w h-full overflow-y-auto p-1.5">
+            {displayTokens?.map((token: Currency) => {
+              return (
+                <button
+                  className="skt-w skt-w-input skt-w-button flex hover:bg-widget-secondary items-center p-2 w-full justify-between disabled:opacity-60 disabled:pointer-events-none"
+                  onClick={() => selectToken(token)}
+                  key={token?.address}
+                  style={{ borderRadius: `calc(0.5rem * ${borderRadius})` }}
+                  disabled={tokenToDisable?.address === token?.address}
+                >
+                  <div className="skt-w flex items-center">
+                    <img
+                      src={token?.logoURI}
+                      className="skt-w w-6 h-6 rounded-full"
+                    />
+                    <div className="skt-w flex flex-col items-start ml-2 text-widget-secondary">
+                      <span className="skt-w text-sm">{token?.symbol}</span>
+                      <span className="skt-w text-xs -mt-0.5">
+                        {token?.name}
                       </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </Modal>
-          )
+                    </div>
+                  </div>
+                  <span className="skt-w text-widget-secondary text-xs text-right font-medium">
+                    {showBalance(token)}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </Modal>
       )}
     </div>
   );

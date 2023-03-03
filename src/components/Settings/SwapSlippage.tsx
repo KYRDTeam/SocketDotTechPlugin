@@ -1,5 +1,4 @@
 import useDebounce from "../../hooks/useDebounce";
-import { animated, useTransition } from "@react-spring/web";
 import { useEffect, useState } from "react";
 import { setSwapSlippage } from "../../state/quotesSlice";
 
@@ -61,22 +60,6 @@ export const SwapSlippage = () => {
     useState<boolean>(false);
   const [showInputLimitDisclaimer, setInputLimitDisclaimer] =
     useState<boolean>(false);
-
-  const lowSlippageTransition = useTransition(showLowSlippageDisclaimer, {
-    from: { opacity: 0, y: "10px" },
-    enter: { opacity: 1, y: "0px" },
-    leave: { opacity: 0, y: "10px" },
-    delay: showInputLimitDisclaimer ? 200 : 0,
-    config: { duration: 50 },
-  });
-
-  const inputLimitTransition = useTransition(showInputLimitDisclaimer, {
-    from: { opacity: 0, y: "10px" },
-    enter: { opacity: 1, y: "0px" },
-    leave: { opacity: 0, y: "10px" },
-    delay: showInputLimitDisclaimer ? 200 : 0,
-    config: { duration: 50 },
-  });
 
   useDebounce(
     () => {
@@ -147,28 +130,22 @@ export const SwapSlippage = () => {
         />
       </div>
 
-      {lowSlippageTransition(
-        (styles, item) =>
-          item && (
-            <animated.div style={styles}>
-              <DisclaimerBox>
-                Transactions with extremely low slippage tolerance might be
-                reverted because of very small market movement
-              </DisclaimerBox>
-            </animated.div>
-          )
+      {showLowSlippageDisclaimer && (
+        <div>
+          <DisclaimerBox>
+            Transactions with extremely low slippage tolerance might be reverted
+            because of very small market movement
+          </DisclaimerBox>
+        </div>
       )}
 
       {/* Input off limit disclaimer */}
-      {inputLimitTransition(
-        (styles, item) =>
-          item && (
-            <animated.div style={styles}>
-              <DisclaimerBox>
-                Please input a value greater than 0 and less than 50
-              </DisclaimerBox>
-            </animated.div>
-          )
+      {showInputLimitDisclaimer && (
+        <div>
+          <DisclaimerBox>
+            Please input a value greater than 0 and less than 50
+          </DisclaimerBox>
+        </div>
       )}
     </div>
   );

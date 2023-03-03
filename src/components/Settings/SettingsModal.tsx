@@ -1,4 +1,3 @@
-import { useTransition } from "@react-spring/web";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsSettingsModalOpen } from "../../state/modals";
 
@@ -15,41 +14,30 @@ export const SettingsModal = () => {
     (state: any) => state.modals.isSettingsModalOpen
   );
 
-  const transitions = useTransition(isSettingsOpen, {
-    from: { y: "100%" },
-    enter: { y: "0" },
-    leave: { y: "100%" },
-    config: { duration: 200 },
-    onReset: () => toggleSettingsModal(false),
-  });
-
   const toggleSettingsModal = (value: boolean) => {
     dispatch(setIsSettingsModalOpen(value));
   };
 
   return (
     <>
-      {transitions(
-        (style, item) =>
-          item && (
-            <Modal
-              title="Settings"
-              closeModal={() => toggleSettingsModal(false)}
-              style={style}
-              classNames="z-50"
-            >
-              <div className="skt-w px-3 pt-3">
-                {/* Sort options */}
-                <SortPreference />
+      {isSettingsOpen && (
+        <Modal
+          title="Settings"
+          closeModal={() => toggleSettingsModal(false)}
+          style={{ display: isSettingsOpen ? "block" : "none" }}
+          classNames="z-50"
+        >
+          <div className="skt-w px-3 pt-3">
+            {/* Sort options */}
+            <SortPreference />
 
-                {/* Single tx checkbox */}
-                <SingleTx />
+            {/* Single tx checkbox */}
+            <SingleTx />
 
-                {/* Swap Slippage */}
-                <SwapSlippage />
-              </div>
-            </Modal>
-          )
+            {/* Swap Slippage */}
+            <SwapSlippage />
+          </div>
+        </Modal>
       )}
     </>
   );

@@ -1,4 +1,3 @@
-import { animated } from "@react-spring/web";
 import { ReactElement, ReactNode, useContext } from "react";
 import { X } from "react-feather";
 import { CustomizeContext } from "../../providers/CustomizeProvider";
@@ -17,12 +16,15 @@ export const Modal = ({
   children,
   disableClose = false,
   classNames,
-  style
+  style,
 }: ModalProps) => {
   const customSettings = useContext(CustomizeContext);
   const { borderRadius } = customSettings.customization;
   return (
-    <animated.div style={style} className="skt-w p-1 w-full h-full absolute top-0 left-0 z-50 bg-black bg-opacity-10">
+    <div
+      style={style}
+      className="skt-w p-1 w-full h-full absolute top-0 left-0 z-50 bg-black bg-opacity-10"
+    >
       <div
         className={`skt-w w-full h-full bg-widget-primary flex flex-col overflow-hidden ${
           classNames ?? ""
@@ -44,6 +46,6 @@ export const Modal = ({
         </div>
         {children}
       </div>
-    </animated.div>
+    </div>
   );
 };

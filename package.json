@@ -24,7 +24,6 @@
     "chromatic": "npx chromatic --project-token=12c9df8b6cf2"
   },
   "dependencies": {
-    "@react-spring/web": "^9.5.0",
     "@reduxjs/toolkit": "^1.8.2",
     "@socket.tech/ll-core": "^0.1.10",
     "@socket.tech/socket-v2-sdk": "^1.21.3",

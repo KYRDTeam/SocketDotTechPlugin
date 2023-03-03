@@ -23,7 +23,6 @@ import { SettingsModal } from "./Settings/SettingsModal";
 import { useChains } from "../hooks/apis";
 import { useCustomSettings } from "../hooks/useCustomSettings";
 import { CreditCard, Edit } from "react-feather";
-import { useTransition } from "@react-spring/web";
 import {
   setActiveRoute,
   setError,
@@ -91,14 +90,6 @@ export const Widget = (props: WidgetProps) => {
   const widgetWidth = responsiveWidth ? "100%" : width > 360 ? width : 360;
   const isTxModalOpen = useSelector((state: any) => state.modals.isTxModalOpen);
 
-  const transitions = useTransition(isTxModalOpen, {
-    from: { y: "100%" },
-    enter: { y: "0" },
-    leave: { y: "100%" },
-    delay: 300,
-    config: { duration: 300 },
-  });
-
   // resetting states on unmount
   useEffect(() => {
     return () => {
@@ -148,9 +139,13 @@ export const Widget = (props: WidgetProps) => {
       </div>
       <SingleTxMessage />
       <RouteDetails />
-      {transitions(
-        (style, item) =>
-          item && <TxModal style={style} onBridge={props?.onBridgeSuccess} onError={props?.onError} onSubmit={props?.onSubmit}/>
+      {isTxModalOpen && (
+        <TxModal
+          style={{ display: isTxModalOpen ? "block" : "none" }}
+          onBridge={props?.onBridgeSuccess}
+          onError={props?.onError}
+          onSubmit={props?.onSubmit}
+        />
       )}
       <SettingsModal />
       <ErrorModal />
