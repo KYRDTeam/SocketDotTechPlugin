@@ -1,6 +1,6 @@
 import { useBalance, useRoutes } from "../../hooks/apis";
 import { useDispatch, useSelector } from "react-redux";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { ethers } from "ethers";
 
 // actions
@@ -190,17 +190,23 @@ export const RouteDetails = () => {
   }
 
   // Returns the text shown on the button depending on the status.
-  function getButtonStatus() {
+  const getButtonStatus = useMemo(() => {
+    console.log({ sourceAmount });
+    if (!sourceAmount || sourceAmount === "0") {
+      return QuoteStatus.ENTER_AMOUNT;
+    }
+    if (isQuotesLoading) {
+      return QuoteStatus.FETCHING_QUOTE;
+    }
     if (!isEnoughBalance) {
       return ButtonTexts.NOT_ENOUGH_BALANCE;
-    } else {
-      return ButtonTexts.REVIEW_QUOTE;
     }
-  }
+    return ButtonTexts.REVIEW_QUOTE;
+  }, [sourceAmount, isEnoughBalance, isQuotesLoading]);
 
   return (
-    <InnerCard>
-      <div className="skt-w text-widget-secondary mb-3 text-sm flex items-center">
+    <InnerCard classNames="bg-gray-700">
+      {/* <div className="skt-w text-widget-secondary mb-3 text-sm flex items-center">
         {sourceAmount && sourceAmount !== "0" && isQuotesLoading ? (
           <span className="mr-1">
             <Spinner size={4} />
@@ -211,19 +217,21 @@ export const RouteDetails = () => {
           ""
         )}
         {quotesStatus()}
-      </div>
+      </div> */}
       <Button
         onClick={review}
+        isLoading={sourceAmount && sourceAmount !== "0" && isQuotesLoading}
         disabled={
           !bestRoute ||
           isQuotesLoading ||
           !isEnoughBalance ||
           (bestRoute?.refuel && !isNativeTokenEnough)
         }
+        classNames="bg-primary-200 h-11 text-sm rounded-2xl text-gray-800"
       >
-        {getButtonStatus()}
+        {getButtonStatus}
       </Button>
-      <div className="skt-w flex items-center justify-between text-widget-secondary mt-2.5 text-xs">
+      {/* <div className="skt-w flex items-center justify-between text-widget-secondary mt-2.5 text-xs">
         <a
           href="http://socket.tech/"
           target="_blank"
@@ -240,7 +248,7 @@ export const RouteDetails = () => {
         >
           Support
         </a>
-      </div>
+      </div> */}
 
       {isReviewOpen && (
         <ReviewModal

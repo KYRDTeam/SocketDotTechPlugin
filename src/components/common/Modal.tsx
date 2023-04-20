@@ -23,10 +23,10 @@ export const Modal = ({
   return (
     <div
       style={style}
-      className="skt-w p-1 w-full h-full absolute top-0 left-0 z-50 bg-black bg-opacity-10"
+      className="skt-w w-full h-full absolute top-0 left-0 z-50 bg-black bg-opacity-10"
     >
       <div
-        className={`skt-w w-full h-full bg-widget-primary flex flex-col overflow-hidden ${
+        className={`p-5 skt-w w-full h-full bg-gray-700 flex flex-col overflow-hidden ${
           classNames ?? ""
         }`}
         style={{ borderRadius: `calc(0.75rem * ${borderRadius})` }}

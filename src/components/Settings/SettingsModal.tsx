@@ -32,7 +32,7 @@ export const SettingsModal = () => {
             <SortPreference />
 
             {/* Single tx checkbox */}
-            <SingleTx />
+            {/* <SingleTx /> */}
 
             {/* Swap Slippage */}
             <SwapSlippage />
