@@ -300,7 +300,7 @@ const TxStep = ({
         currentTx
           ? "bg-widget-secondary bg-opacity-20 border-widget-accent"
           : "border-widget-secondary"
-      } ${forReview ? "" : "p-3"}`}
+      } ${forReview ? "p-3" : "p-3"}`}
       style={{ borderRadius: `calc(0.5rem * ${borderRadius}` }}
     >
       <div
