@@ -22,7 +22,7 @@ import { SettingsModal } from "./Settings/SettingsModal";
 // hooks
 import { useChains } from "../hooks/apis";
 import { useCustomSettings } from "../hooks/useCustomSettings";
-import { CreditCard, Edit } from "react-feather";
+import { CreditCard, Edit, Repeat } from "react-feather";
 import {
   setActiveRoute,
   setError,
@@ -30,7 +30,7 @@ import {
   setIsTxModalOpen,
 } from "../state/modals";
 import { setSourceAmount } from "../state/amountSlice";
-
+import SwapIcon from "../components/icons/SwapIcon";
 // Main Widget -> Base file.
 export const Widget = (props: WidgetProps) => {
   const {
@@ -105,12 +105,12 @@ export const Widget = (props: WidgetProps) => {
       style={{
         width: widgetWidth,
         borderRadius: `calc(1rem * ${borderRadius})`,
-        minWidth: "360px",
+        minWidth: "462px",
       }}
-      className="relative p-1 overflow-hidden skt-w skt-w-container bg-widget-primary"
+      className="relative p-5 overflow-hidden skt-w skt-w-container bg-gray-700"
     >
       <div className="skt-w p-3 pt-2.5 pb-3.5">
-        <Header title={title}>
+        <Header title={""}>
           <div className="flex items-center skt-w">
             {!props?.provider ? (
               <span className="flex items-center text-sm skt-w text-widget-secondary">
@@ -119,8 +119,8 @@ export const Widget = (props: WidgetProps) => {
               </span>
             ) : (
               <>
-                <PendingTransactions />
-                <Settings />
+                {/* <PendingTransactions />
+                <Settings /> */}
               </>
             )}
           </div>
@@ -130,14 +130,18 @@ export const Widget = (props: WidgetProps) => {
           onTokenChange={props.onSourceTokenChange}
           onNetworkChange={props.onSourceNetworkChange}
         />
+        <div className="flex justify-center py-4">
+          <SwapIcon />
+        </div>
+
         <Output
           customTokenList={props.tokenList}
           onTokenChange={props.onDestinationTokenChange}
           onNetworkChange={props.onDestinationNetworkChange}
         />
-        {props.enableRefuel && <Refuel />}
+        {/* {props.enableRefuel && <Refuel />} */}
       </div>
-      <SingleTxMessage />
+      {/* <SingleTxMessage /> */}
       <RouteDetails />
       {isTxModalOpen && (
         <TxModal

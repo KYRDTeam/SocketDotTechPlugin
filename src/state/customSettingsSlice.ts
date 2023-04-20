@@ -12,7 +12,7 @@ const initialState = {
   sameChainSwapsEnabled: false,
   includeBridges: null,
   excludeBridges: null,
-  singleTxOnly: false,
+  singleTxOnly: true,
 };
 
 const customSettingsSlice = createSlice({

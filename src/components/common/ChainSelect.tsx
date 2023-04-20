@@ -28,18 +28,22 @@ function Option({
 }) {
   return (
     <div
-      className={`skt-w flex w-28 items-center cursor-pointer flex-shrink-0 ${
-        selected ? "" : "p-1.5 hover:bg-widget-secondary hover:bg-opacity-80" 
+      className={`skt-w flex items-center cursor-pointer flex-shrink-0 ${
+        selected
+          ? ""
+          : "px-4 py-2 hover:bg-widget-secondary hover:bg-opacity-80"
       }`}
       onClick={onClick}
     >
       <div className="skt-w flex items-center">
         <img
           src={network?.icon}
-          className="skt-w h-6 w-6"
+          className="skt-w h-5 w-5"
           style={{ borderRadius: `calc(0.3rem * ${borderRadius})` }}
         />
-        <span className="skt-w text-sm text-widget-primary mx-1">{network?.name}</span>
+        <span className="skt-w text-sm text-widget-primary mx-1">
+          {network?.name}
+        </span>
       </div>
       {selected && !onlyOneNetwork && (
         <ChevronDown className="skt-w text-widget-secondary w-4 h-4" />
@@ -76,10 +80,10 @@ export function ChainSelect({
           ? null
           : () => setOpenDropdown(!openDropdown)
       }
-      className={`skt-w relative p-1.5 ${
+      className={`skt-w relative px-4 py-2 bg-gray-900 rounded-xl ${
         openDropdown ? "bg-widget-interactive h-auto" : ""
       }`}
-      style={{ borderRadius: `calc(0.5rem * ${borderRadius})` }}
+      // style={{ borderRadius: `calc(0.5rem * ${borderRadius})` }}
       ref={chainDropdownRef}
     >
       {activeNetwork ? (
@@ -91,7 +95,7 @@ export function ChainSelect({
         />
       ) : (
         <span
-          className="skt-w text-sm text-widget-primary bg-widget-secondary py-1.5 px-2"
+          className="skt-w text-sm text-widget-primary px-4 py-2"
           style={{ borderRadius: `calc(0.3rem * ${borderRadius})` }}
         >
           Loading chains
@@ -100,7 +104,7 @@ export function ChainSelect({
 
       {openDropdown && (
         <div
-          className="skt-w pt-1 z-10 left-0 absolute bg-widget-interactive flex flex-col w-full max-h-[150px] overflow-y-auto overflow-hidden"
+          className="skt-w pt-1 z-10 left-0 absolute bg-widget-interactive flex flex-col w-full max-h-[135px] overflow-y-auto overflow-hidden"
           style={{
             borderBottomRightRadius: `calc(0.75rem * ${borderRadius})`,
             borderBottomLeftRadius: `calc(0.75rem * ${borderRadius})`,

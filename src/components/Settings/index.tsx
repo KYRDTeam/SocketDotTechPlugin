@@ -1,6 +1,8 @@
 import { setIsSettingsModalOpen } from "../../state/modals";
 import { useDispatch } from "react-redux";
-import { Settings as SettingsIcon } from "react-feather";
+// import { Settings as SettingsIcon } from "react-feather";
+// import { Sliders as SettingsIcon } from "react-feather";
+import SettingIcons from "../icons/SettingIcon";
 
 // Component that lets you set the parameters for fetching quotes or building a transaction.
 export const Settings = () => {
@@ -14,9 +16,12 @@ export const Settings = () => {
     <>
       <button
         onClick={() => toggleSettingsModal(true)}
-        className="skt-w skt-w-button skt-w-input flex ml-3"
+        className="skt-w skt-w-button skt-w-input flex ml-3 p-2 rounded-full"
+        style={{
+          backgroundColor: "#010101",
+        }}
       >
-        <SettingsIcon className="skt-w w-5.5 h-5.5 text-widget-secondary hover:text-widget-primary hover:rotate-45 duration-200 ease-linear" />
+        <SettingIcons />
       </button>
     </>
   );

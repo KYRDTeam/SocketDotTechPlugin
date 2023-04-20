@@ -42,7 +42,7 @@ export const PendingTransactions = () => {
     return (
       <>
         <button
-          className="skt-w skt-w-button skt-w-input uppercase text-sm px-2 py-0.5 bg-widget-accent shadow-inner bg-opacity-90 text-widget-onAccent"
+          className="skt-w skt-w-button skt-w-input uppercase text-sm px-2 py-0.5 bg-primary-200 shadow-inner bg-opacity-90 text-widget-onAccent"
           onClick={() => setIsModalOpen(true)}
           style={{ borderRadius: `calc(0.75rem * ${borderRadius})` }}
         >

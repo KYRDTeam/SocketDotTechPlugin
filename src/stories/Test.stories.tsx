@@ -72,7 +72,10 @@ const Template = (args: WidgetProps) => {
   }, [window.ethereum]);
 
   return (
-    <div className="skt-w bg-gray-400 p-10" style={{ height: "calc(100vh - 40px)" }}>
+    <div
+      className="skt-w bg-gray-900 p-10"
+      style={{ height: "calc(100vh - 40px)" }}
+    >
       <p style={{ color: "black" }}>
         User Address : {userAddress}
         <br />
@@ -111,11 +114,11 @@ const Customize = {
 };
 
 function showAlert(value) {
-  console.log('showing alert', value);
+  console.log("showing alert", value);
 }
 
 const UNISWAP_DEFAULT_LIST = "https://gateway.ipfs.io/ipns/tokens.uniswap.org";
-const displayName = <span style={{color: 'red'}}>Salil</span>
+const displayName = <span style={{ color: "red" }}>Salil</span>;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -129,20 +132,20 @@ Default.args = {
   enableRefuel: true,
   // onBridgeSuccess: showAlert,
   // onSourceTokenChange: (value) => console.log('Source Token:', value),
-  onSourceNetworkChange: (value) => console.log('Source Network:', value),
+  onSourceNetworkChange: (value) => console.log("Source Network:", value),
   // onDestinationTokenChange: (value) => console.log('Dest Token:', value),
   // onDestinationNetworkChange: (value) => console.log('Dest Network:', value),
   // onError: (value) => console.log('Error', value),
   // onSubmit: (value: transactionDetails) => console.log('Submitted: ', value, value?.txData?.[0]?.chainId),
-  
+
   // tokenList: MY_LIST,
   // tokenList: UNISWAP_DEFAULT_LIST,
-  destNetworks: [10],
+  // destNetworks: [10],
   // sourceNetworks: [10],
-  defaultSourceNetwork: 10,
-  defaultDestNetwork: 10,
-  // defaultSourceToken: "0x8c6f28f2F1A3C87F0f938b96d27520d9751ec8d9", // susd
-  // defaultDestToken: "0xdac17f958d2ee523a2206206994597c13d831EC7",
+  defaultSourceNetwork: 137,
+  defaultDestNetwork: 1,
+  defaultSourceToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", // usdt
+  // defaultDestToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
   // defaultDestToken: "0x8c6f28f2F1A3C87F0f938b96d27520d9751ec8d9",
   // defaultSourceToken: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
   // defaultDestToken: "0xbe662058e00849C3Eef2AC9664f37fEfdF2cdbFE",

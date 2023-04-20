@@ -17,12 +17,12 @@ export const RadioCheckbox = (props: RadioProps) => {
     <div className="skt-w relative mx-1">
       <label
         htmlFor={id}
-        className={`skt-w flex items-center justify-center w-12 relative z-10 p-2 cursor-pointer border border-opacity-40 text-sm font-semibold ${
+        className={`skt-w flex items-center justify-center w-12 relative z-10 p-2 cursor-pointer border text-sm ${
           checked
-            ? "bg-widget-accent text-widget-onAccent border-widget-accent"
-            : "text-widget-secondary border-widget-secondary-text"
+            ? "border-primary-200 text-primary-200 border-1"
+            : "text-white-900 border-gray-350"
         }`}
-        style={{ borderRadius: `calc(0.375rem * ${borderRadius})` }}
+        style={{ borderRadius: "14px" }}
       >
         {label}
       </label>

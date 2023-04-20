@@ -28,19 +28,17 @@ export const Button = (props: ButtonProps) => {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`skt-w skt-w-input skt-w-button h-14 px-3 flex items-center justify-center transition-all duration-100 ease-linear w-full bg-widget-accent text-widget-onAccent hover:bg-opacity-90 border-widget-primary 
-      disabled:bg-widget-secondary 
-      disabled:text-widget-secondary 
+      className={`skt-w skt-w-input skt-w-button h-11 px-3 flex items-center justify-center transition-all duration-100 ease-linear w-full bg-primary-200 text-sm rounded-2xl text-gray-800 hover:bg-opacity-90 
+      disabled:bg-primary-450
+      disabled:text-white-900 
       disabled:opacity-50 
       disabled:font-normal 
-      disabled:border-opacity-50 
-      border 
-      ${
-        classNames || ""
-      }`}
-      style={{ borderRadius: `calc(0.625rem * ${borderRadius})` }}
+      disabled:border-opacity-50
+      ${classNames || ""}`}
+      // style={{ borderRadius: `calc(0.625rem * ${borderRadius})` }}
     >
-      {isLoading && <Spinner size={4} />} <span className="ml-2">{children}</span>
+      {isLoading && <Spinner size={4} />}{" "}
+      <span className="ml-2">{children}</span>
     </button>
   );
 };

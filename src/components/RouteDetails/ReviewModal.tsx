@@ -193,7 +193,7 @@ export const ReviewModal = ({
             {!isSameChainSwap ? (
               <>
                 <RouteDetailRow
-                  label="Bridge Name"
+                  label="Platform"
                   value={
                     BRIDGE_DISPLAY_NAMES[
                       selectedRoute?.route?.usedBridgeNames?.[0]
@@ -243,12 +243,13 @@ export const ReviewModal = ({
             {(!!swapStepInFundMovr || !!swapData) && (
               <RouteDetailRow label="Swap Slippage">
                 <div className="flex items-center">
-                  {swapData?.swapSlippage ?? swapStepInFundMovr?.swapSlippage}%{" "}
                   <button
-                    className="skt-w skt-w-input skt-w-button flex"
+                    className="skt-w skt-w-input skt-w-button flex text-primary-200"
                     onClick={openSettingsModal}
                   >
-                    <Edit className="ml-2 w-4 h-4 text-widget-accent" />
+                    {swapData?.swapSlippage ?? swapStepInFundMovr?.swapSlippage}
+                    %{" "}
+                    {/* <Edit className="ml-2 w-4 h-4 text-widget-accent" /> */}
                   </button>
                 </div>
               </RouteDetailRow>
@@ -266,17 +267,17 @@ export const ReviewModal = ({
         </div>
 
         <InnerCard
-          classNames={`absolute w-full flex bottom-0 flex-col justify-between transition-all ${
+          classNames={`absolute bg-gray-700 w-full flex bottom-0 flex-col justify-between transition-all ${
             showTxDetails ? `h-full max-h-full` : "h-auto max-h-min"
           }`}
         >
           <div className="skt-w flex-1 flex flex-col overflow-auto">
             <button
-              className="skt-w skt-w-button skt-w-input flex items-center text-sm text-widget-secondary mb-3"
+              className="skt-w skt-w-button skt-w-input flex items-center text-sm text-primary-200 mb-3"
               onClick={() => setShowTxDetails(!showTxDetails)}
             >
               <ChevronUp
-                className={`skt-w w-4 h-4 text-widget-secondary transition-all mr-1.5 ${
+                className={`skt-w w-4 h-4 text-primary-200 transition-all mr-1.5 ${
                   showTxDetails ? "rotate-180" : "rotate-0"
                 }`}
               />{" "}
@@ -335,8 +336,8 @@ const RouteDetailRow = ({
 }) => {
   return (
     <div className="skt-w w-full flex justify-between text-sm text-widget-secondary my-1.5">
-      <span>{label}</span>
-      <span>{value}</span>
+      <span className="text-gray-400">{label}</span>
+      <span className="text-white-200">{value}</span>
       {children}
     </div>
   );
@@ -352,20 +353,15 @@ const FeeDisplay = (props: FeeDisplayProps) => {
   const { feeInToken, tokenSymbol, feeInUsd } = props;
   if (!!feeInToken) {
     return (
-      <span>
+      <span className="text-white-200">
         {!!feeInToken && feeInToken !== "0" ? (
           <span>
-            {truncateDecimalValue(feeInToken, 5)}{" "}
-            <span className="font-medium">{tokenSymbol}</span>{" "}
+            {truncateDecimalValue(feeInToken, 5)} <span>{tokenSymbol}</span>{" "}
           </span>
         ) : (
           0
         )}
-        {feeInUsd !== 0 && (
-          <span className="opacity-80 font-normal">
-            (${feeInUsd?.toFixed(4)})
-          </span>
-        )}
+        {feeInUsd !== 0 && <span>(${feeInUsd?.toFixed(4)})</span>}
       </span>
     );
   } else return null;

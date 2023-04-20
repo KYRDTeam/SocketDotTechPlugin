@@ -23,14 +23,24 @@ export const TokenInput = (props: TokenInputProps) => {
     activeToken,
     tokens,
     noTokens = false,
-    tokenToDisable
+    tokenToDisable,
   } = props;
   return (
     <div className="skt-w flex items-center justify-between mt-2.5 overflow-hidden pb-[1.125rem]">
+      {noTokens ? (
+        <TokenChipPlaceholder>No Tokens</TokenChipPlaceholder>
+      ) : (
+        <TokenSelect
+          updateToken={updateToken}
+          activeToken={activeToken}
+          tokens={tokens}
+          tokenToDisable={tokenToDisable}
+        />
+      )}
       <div className="skt-w flex flex-1">
-        <div className="stk-w flex flex-col relative">
+        <div className="stk-w flex flex-1 flex-col relative">
           <input
-            className={`skt-w skt-w-input text-widget-primary text-3xl focus:outline-none w-full h-full overflow-ellipsis bg-transparent`}
+            className={`skt-w skt-w-input text-right text-widget-primary text-2xl focus:outline-none w-full h-full overflow-ellipsis bg-transparent`}
             value={amount}
             onChange={(e) => onChangeInput(e.target.value)}
             placeholder="0.0"
@@ -42,16 +52,6 @@ export const TokenInput = (props: TokenInputProps) => {
           <RefuelAmount src={source} />
         </div>
       </div>
-      {noTokens ? (
-        <TokenChipPlaceholder>No Tokens</TokenChipPlaceholder>
-      ) : (
-        <TokenSelect
-          updateToken={updateToken}
-          activeToken={activeToken}
-          tokens={tokens}
-          tokenToDisable={tokenToDisable}
-        />
-      )}
     </div>
   );
 };

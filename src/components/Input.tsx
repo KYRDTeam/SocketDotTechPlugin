@@ -29,6 +29,8 @@ import useMappedChainData from "../hooks/useMappedChainData";
 import useDebounce from "../hooks/useDebounce";
 import { Web3Context } from "../providers/Web3Provider";
 import { useTokenList } from "../hooks/useTokenList";
+import { PendingTransactions } from "./PendingTransactions";
+import { Settings } from "./Settings";
 
 // Component that handles the source chain parameters. (FromChain, Source Token)
 // Shows the balance for the source chain, and takes the input from the user for amount.
@@ -159,6 +161,7 @@ export const Input = ({
     }
 
     if (!amount || amount == 0) {
+      updateInputAmount("");
       dispatch(setBestRoute(null));
     }
   };
@@ -305,35 +308,48 @@ export const Input = ({
   }, []);
 
   return (
-    <div className="skt-w mt-3.5">
-      <div className="skt-w flex items-center justify-between">
-        <div className="skt-w flex items-center">
-          <span className="skt-w text-widget-secondary text-sm mr-1.5">
-            From
-          </span>
+    <div className="skt-w">
+      <div className="flex justify-between items-center">
+        <div style={{ width: "fit-content" }} className="mb-2">
           <ChainSelect
             networks={supportedNetworks}
             activeNetworkId={sourceChainId}
             onChange={updateNetwork}
           />
         </div>
-        {!noTokens && (
-          <Balance
-            token={tokenWithBalance}
-            isLoading={isBalanceLoading}
-            onClick={() => setMaxBalance(tokenWithBalance?.balance)}
-          />
-        )}
+        <div className="flex items-center mb-2">
+          <div>
+            <PendingTransactions />
+          </div>
+          <Settings />
+        </div>
       </div>
-      <TokenInput
-        source
-        amount={inputAmount}
-        onChangeInput={onChangeInput}
-        updateToken={_setSourceToken}
-        activeToken={sourceToken}
-        tokens={allSourceTokens}
-        noTokens={noTokens}
-      />
+
+      <div className="p-4 rounded-xl bg-gray-900">
+        <div className="skt-w flex items-center justify-between">
+          <div className="skt-w flex items-center">
+            <span className="skt-w text-widget-secondary text-sm mr-1.5">
+              You pay
+            </span>
+          </div>
+          {!noTokens && (
+            <Balance
+              token={tokenWithBalance}
+              isLoading={isBalanceLoading}
+              onClick={() => setMaxBalance(tokenWithBalance?.balance)}
+            />
+          )}
+        </div>
+        <TokenInput
+          source
+          amount={inputAmount}
+          onChangeInput={onChangeInput}
+          updateToken={_setSourceToken}
+          activeToken={sourceToken}
+          tokens={allSourceTokens}
+          noTokens={noTokens}
+        />
+      </div>
     </div>
   );
 };

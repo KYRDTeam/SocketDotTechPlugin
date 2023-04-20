@@ -102,7 +102,7 @@ export const SwapSlippage = () => {
           </span>
         ) : null}
       </div>
-      <div className="flex -mx-1">
+      <div className="flex -mx-1 justify-between">
         <RadioCheckbox
           id="swap-slippage-1"
           name="swap-slippage"

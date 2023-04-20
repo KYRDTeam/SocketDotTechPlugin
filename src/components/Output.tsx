@@ -241,29 +241,35 @@ export const Output = ({
   );
 
   return (
-    <div className="skt-w mt-6">
-      <div className="skt-w flex items-center justify-between">
-        <div className="skt-w flex items-center">
-          <span className="skt-w text-widget-secondary text-sm mr-1.5">To</span>
-          <ChainSelect
-            networks={supportedNetworksSubset}
-            activeNetworkId={destChainId}
-            onChange={updateNetwork}
-          />
-        </div>
-        {!noTokens && (
-          <Balance token={tokenWithBalance} isLoading={isBalanceLoading} />
-        )}
+    <div className="skt-w">
+      <div style={{ width: "fit-content" }} className="mb-2">
+        <ChainSelect
+          networks={supportedNetworksSubset}
+          activeNetworkId={destChainId}
+          onChange={updateNetwork}
+        />
       </div>
+      <div className="p-4 rounded-xl bg-gray-900">
+        <div className="skt-w flex items-center justify-between">
+          <div className="skt-w flex items-center">
+            <span className="skt-w text-widget-secondary text-sm mr-1.5">
+              You receive
+            </span>
+          </div>
+          {!noTokens && (
+            <Balance token={tokenWithBalance} isLoading={isBalanceLoading} />
+          )}
+        </div>
 
-      <TokenInput
-        amount={`${outputAmount ? `~${outputAmount}` : ""}`}
-        updateToken={_setDestToken}
-        activeToken={destToken}
-        tokens={allDestTokens}
-        noTokens={noTokens}
-        tokenToDisable={sourceChainId === destChainId && sourceToken}
-      />
+        <TokenInput
+          amount={`${outputAmount ? `~${outputAmount}` : ""}`}
+          updateToken={_setDestToken}
+          activeToken={destToken}
+          tokens={allDestTokens}
+          noTokens={noTokens}
+          tokenToDisable={sourceChainId === destChainId && sourceToken}
+        />
+      </div>
     </div>
   );
 };
