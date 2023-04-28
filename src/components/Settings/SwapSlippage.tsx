@@ -84,7 +84,7 @@ export const SwapSlippage = () => {
   );
 
   return (
-    <div className="mt-6 bg-gray-900 rounded-2xl p-7">
+    <div className="bg-gray-900 rounded-2xl p-7">
       <div className="flex justify-between relative">
         <div className="skt-w flex items-center mb-1.5">
           <SubTitle>Swap Slippage</SubTitle>
@@ -96,13 +96,13 @@ export const SwapSlippage = () => {
             <Info className="ml-1.5 w-4 h-4 text-widget-secondary" />
           </Popover>
         </div>
-        {buttonInput || customInput ? (
+        {/* {buttonInput || customInput ? (
           <span className="text-sm text-widget-secondary ml-3">
             Slippage: {buttonInput ?? customInput}%
           </span>
-        ) : null}
+        ) : null} */}
       </div>
-      <div className="flex -mx-1 justify-between mt-2">
+      <div className="flex -mx-1 justify-between mt-3">
         <RadioCheckbox
           id="swap-slippage-1"
           name="swap-slippage"

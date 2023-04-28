@@ -313,7 +313,7 @@ export const ReviewModal = ({
 
             <Button
               onClick={quoteUpdated ? updateSelectedRoute : openTxModal}
-              classNames={`font-semibold ${quoteUpdated ? "h-12" : ""}`}
+              classNames={`font-bold ${quoteUpdated ? "h-12" : ""}`}
               disabled={!bestRoute}
             >
               {quoteUpdated

@@ -43,10 +43,10 @@ export const SortPreference = () => {
   }, []);
 
   return (
-    <div className="skt-w flex items-center relative z-30 justify-between bg-gray-900 rounded-2xl p-7">
+    <div className="mt-6 skt-w flex items-center relative z-30 justify-between bg-gray-900 rounded-2xl p-7">
       <SubTitle>Preferred Route</SubTitle>
       <div
-        className="skt-w relative border border-gray-400 flex w-auto ml-2 rounded-xl"
+        className="skt-w relative border border-gray-800 flex w-auto ml-2 rounded-xl"
         ref={dropdownRef}
       >
         <Option onClick={() => openDropdown(!dropdown)} active>
@@ -59,9 +59,9 @@ export const SortPreference = () => {
         </Option>
         {dropdown && (
           <div
-            className="skt-w absolute top-10 left-0 w-full border border-widget-secondary-text border-opacity-40 overflow-hidden bg-widget-primary"
+            className="skt-w absolute top-10 left-0 w-full overflow-hidden bg-gray-550 rounded-xl"
             style={{
-              borderRadius: `calc(0.375rem * ${borderRadius})`,
+              boxShadow: "0px 6px 42px rgba(0, 0, 0, 0.8)",
             }}
           >
             {sortOptions.map((x) => {
@@ -89,8 +89,10 @@ const Option = ({
 }) => {
   return (
     <button
-      className={`skt-w skt-w-input skt-w-button w-32 px-2 py-2 bg-gray-900 text-widget-secondary text-sm flex items-center justify-between ${
-        active ? "" : "hover:bg-whiteAlpha-100"
+      className={`skt-w skt-w-input skt-w-button w-32 px-2 py-2 text-widget-secondary text-sm flex items-center justify-between ${
+        active
+          ? "border border-gray-550 bg-gray-550 rounded-xl"
+          : "hover:bg-whiteAlpha-100"
       }`}
       onClick={onClick}
     >

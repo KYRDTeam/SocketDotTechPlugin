@@ -58,7 +58,7 @@ export const Modal = ({
         )}
         {typeHeader === "center" && (
           <div
-            className={`skt-w mb-4 p-3 pt-2.5 relative text-white ${
+            className={`skt-w mb-2 p-3 pt-2.5 relative text-white ${
               !noBorder ? "border-b border-widget-secondary" : ""
             } ${noPadding ? "mx-5 mt-5" : ""}`}
           >

@@ -31,13 +31,14 @@ export const SettingsModal = () => {
         >
           <div className="skt-w px-3 pt-3">
             {/* Sort options */}
-            <SortPreference />
 
             {/* Single tx checkbox */}
             {/* <SingleTx /> */}
 
             {/* Swap Slippage */}
             <SwapSlippage />
+
+            <SortPreference />
           </div>
         </Modal>
       )}
