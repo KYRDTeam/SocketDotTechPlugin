@@ -1,26 +1,35 @@
 import { useAllTokenBalances } from "../../hooks/apis";
 import { Currency } from "../../types";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { useState } from "react";
-import { ChevronDown } from "react-feather";
+import { ChevronDown, Copy, ExternalLink } from "react-feather";
 import { CustomizeContext } from "../../providers/CustomizeProvider";
 import { Modal } from "../common/Modal";
 import { SearchBar } from "./SearchBar";
-
+import { ellipsis, compareAddressWeb3 } from "../../utils";
+import { NATIVE_TOKEN_ADDRESS } from "@socket.tech/socket-v2-sdk/lib/src/constants";
+import { useSelector } from "react-redux";
+import CopyToClipboard from "../common/CopyToClipboard";
 interface Props {
   activeToken: Currency;
   updateToken: (token: Currency) => void;
   tokens: Currency[];
   tokenToDisable?: Currency;
+  chainId: number;
 }
 
 export const TokenSelect = (props: Props) => {
-  const { activeToken, updateToken, tokens, tokenToDisable } = props;
+  const { activeToken, updateToken, tokens, tokenToDisable, chainId } = props;
   const [openTokenList, setOpenTokenList] = useState<boolean>(false);
   const [filteredTokens, setFilteredTokens] = useState(null);
   const [displayTokens, setDisplayTokens] = useState(null);
   const customSettings = useContext(CustomizeContext);
   const { borderRadius } = customSettings.customization;
+  const allNetworks = useSelector((state: any) => state.networks.allNetworks);
+
+  const currentNetwork = useMemo(() => {
+    return allNetworks.find((e) => e.chainId === chainId);
+  }, []);
 
   // Hook that gives you all the balances for a user on all chains.
   const { data: tokensWithBalances } = useAllTokenBalances();
@@ -38,7 +47,7 @@ export const TokenSelect = (props: Props) => {
     );
     if (_token?.[0]) {
       return _token[0].amount.toFixed(5);
-    } else return "";
+    } else return "0";
   }
 
   // compare tokens with tokensWithBalances and return the tokens with balance
@@ -106,7 +115,7 @@ export const TokenSelect = (props: Props) => {
         >
           <img
             src={activeToken?.logoURI}
-            className="skt-w h-6 w-6 rounded-full mr-1.5 border"
+            className="skt-w h-6 w-6 rounded-full mr-1.5"
           />
           <div className="skt-w flex items-center">
             <span className="mr-0.5">{activeToken?.symbol}</span>
@@ -117,44 +126,74 @@ export const TokenSelect = (props: Props) => {
 
       {openTokenList && (
         <Modal
-          title="Select Token"
+          title="Select a token"
           closeModal={() => {
             setOpenTokenList(false);
             handleSearchInput("");
           }}
+          classNames="p-0"
           style={{ display: openTokenList ? "block" : "none" }}
+          noBorder
+          noPadding
         >
-          <div className="skt-w px-1.5 pt-2 mb-2">
+          <div className="skt-w px-7 pt-2 mb-2">
             <SearchBar
               searchInput={searchInput}
               setSearchInput={setSearchInput}
               handleInput={(e) => handleSearchInput(e)}
             />
           </div>
-          <div className="skt-w h-full overflow-y-auto p-1.5">
+          <div className="skt-w h-full overflow-y-auto ">
             {displayTokens?.map((token: Currency) => {
+              const isNativeToken = compareAddressWeb3(
+                token?.address,
+                NATIVE_TOKEN_ADDRESS
+              );
               return (
                 <button
-                  className="skt-w skt-w-input skt-w-button flex hover:bg-widget-secondary items-center p-2 w-full justify-between disabled:opacity-60 disabled:pointer-events-none"
+                  className="skt-w skt-w-input skt-w-button flex hover:bg-gray-800 items-center px-7 py-3 w-full justify-between disabled:opacity-30 disabled:pointer-events-none"
                   onClick={() => selectToken(token)}
                   key={token?.address}
-                  style={{ borderRadius: `calc(0.5rem * ${borderRadius})` }}
                   disabled={tokenToDisable?.address === token?.address}
                 >
                   <div className="skt-w flex items-center">
                     <img
                       src={token?.logoURI}
-                      className="skt-w w-6 h-6 rounded-full"
+                      className="skt-w w-35 h-35 rounded-full"
                     />
-                    <div className="skt-w flex flex-col items-start ml-2 text-widget-secondary">
-                      <span className="skt-w text-sm">{token?.symbol}</span>
-                      <span className="skt-w text-xs -mt-0.5">
+                    <div className="skt-w items-start ml-2 text-widget-secondary">
+                      <div
+                        className="text-md mb-1 text-left"
+                        title={token?.symbol}
+                      >
                         {token?.name}
-                      </span>
+                      </div>
+                      {isNativeToken && (
+                        <div className="text-sm text-gray-400 mr-2">
+                          {currentNetwork?.name} Native token
+                        </div>
+                      )}
+                      {!isNativeToken && (
+                        <div className="flex items-center">
+                          <div className="text-sm text-gray-400 mr-2">
+                            {ellipsis(token?.address, 7, 4)}
+                          </div>
+                          <CopyToClipboard value={token.address} />
+                          <a
+                            href={`${currentNetwork.explorers[0]}/token/${token.address}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="skt-w skt-w-anchor flex items-center hover:underline"
+                          >
+                            <ExternalLink className="w-4 h-4 text-gray-400 hover:text-primary-200" />
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <span className="skt-w text-widget-secondary text-xs text-right font-medium">
-                    {showBalance(token)}
+
+                  <span className="skt-w text-widget-secondary text-sm text-right font-medium">
+                    {showBalance(token)} {token.symbol}
                   </span>
                 </button>
               );

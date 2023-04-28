@@ -239,6 +239,7 @@ export const Output = ({
     300,
     [_destToken]
   );
+  console.log({ destChainId });
 
   return (
     <div className="skt-w">
@@ -260,14 +261,14 @@ export const Output = ({
             <Balance token={tokenWithBalance} isLoading={isBalanceLoading} />
           )}
         </div>
-
         <TokenInput
           amount={`${outputAmount ? `~${outputAmount}` : ""}`}
           updateToken={_setDestToken}
           activeToken={destToken}
           tokens={allDestTokens}
           noTokens={noTokens}
-          tokenToDisable={sourceChainId === destChainId && sourceToken}
+          tokenToDisable={destToken}
+          chainId={destChainId}
         />
       </div>
     </div>

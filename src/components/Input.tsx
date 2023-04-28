@@ -340,6 +340,7 @@ export const Input = ({
             />
           )}
         </div>
+
         <TokenInput
           source
           amount={inputAmount}
@@ -348,6 +349,8 @@ export const Input = ({
           activeToken={sourceToken}
           tokens={allSourceTokens}
           noTokens={noTokens}
+          tokenToDisable={sourceToken}
+          chainId={sourceChainId}
         />
       </div>
     </div>

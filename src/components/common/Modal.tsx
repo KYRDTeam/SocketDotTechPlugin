@@ -9,6 +9,8 @@ interface ModalProps {
   disableClose?: boolean;
   classNames?: string;
   style?: any;
+  noBorder?: boolean;
+  noPadding?: boolean;
 }
 export const Modal = ({
   title,
@@ -17,6 +19,8 @@ export const Modal = ({
   disableClose = false,
   classNames,
   style,
+  noBorder = false,
+  noPadding = false,
 }: ModalProps) => {
   const customSettings = useContext(CustomizeContext);
   const { borderRadius } = customSettings.customization;
@@ -26,12 +30,16 @@ export const Modal = ({
       className="skt-w w-full h-full absolute top-0 left-0 z-50 bg-black bg-opacity-10"
     >
       <div
-        className={`p-5 skt-w w-full h-full bg-gray-700 flex flex-col overflow-hidden ${
-          classNames ?? ""
-        }`}
+        className={`skt-w w-full h-full bg-gray-700 flex flex-col overflow-hidden ${
+          !noPadding ? "p-5" : ""
+        } ${classNames ?? ""}`}
         style={{ borderRadius: `calc(0.75rem * ${borderRadius})` }}
       >
-        <div className="skt-w p-3 pt-2.5 border-b border-widget-secondary">
+        <div
+          className={`skt-w p-3 pt-2.5 ${
+            !noBorder ? "border-b border-widget-secondary" : ""
+          } ${noPadding ? "mx-5 mt-5" : ""}`}
+        >
           <Header title={title}>
             {closeModal && (
               <button
