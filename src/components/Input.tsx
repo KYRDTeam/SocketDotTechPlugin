@@ -6,7 +6,7 @@ import { NATIVE_TOKEN_ADDRESS } from "../consts";
 
 // component
 import { TokenInput } from "./TokenInput";
-import { ChainSelect } from "./common/ChainSelect";
+import { ChainSelect } from "./common/ChainSelect2";
 import { Balance } from "./common/Balance";
 
 // actions
@@ -328,9 +328,7 @@ export const Input = ({
       <div className="p-4 rounded-xl bg-gray-900">
         <div className="skt-w flex items-center justify-between">
           <div className="skt-w flex items-center">
-            <span className="skt-w text-widget-secondary text-sm mr-1.5">
-              You pay
-            </span>
+            <span className="skt-w text-gray-400 text-sm mr-1.5">You pay</span>
           </div>
           {!noTokens && (
             <Balance
@@ -340,6 +338,7 @@ export const Input = ({
             />
           )}
         </div>
+
         <TokenInput
           source
           amount={inputAmount}
@@ -348,6 +347,8 @@ export const Input = ({
           activeToken={sourceToken}
           tokens={allSourceTokens}
           noTokens={noTokens}
+          tokenToDisable={sourceToken}
+          chainId={sourceChainId}
         />
       </div>
     </div>

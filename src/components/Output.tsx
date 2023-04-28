@@ -4,7 +4,7 @@ import { Currency, Network, onNetworkChange, onTokenChange } from "../types";
 
 // component
 import { TokenInput } from "./TokenInput";
-import { ChainSelect } from "./common/ChainSelect";
+import { ChainSelect } from "./common/ChainSelect2";
 import { Balance } from "./common/Balance";
 
 // actions
@@ -252,7 +252,7 @@ export const Output = ({
       <div className="p-4 rounded-xl bg-gray-900">
         <div className="skt-w flex items-center justify-between">
           <div className="skt-w flex items-center">
-            <span className="skt-w text-widget-secondary text-sm mr-1.5">
+            <span className="skt-w text-gray-400 text-sm mr-1.5">
               You receive
             </span>
           </div>
@@ -260,14 +260,14 @@ export const Output = ({
             <Balance token={tokenWithBalance} isLoading={isBalanceLoading} />
           )}
         </div>
-
         <TokenInput
           amount={`${outputAmount ? `~${outputAmount}` : ""}`}
           updateToken={_setDestToken}
           activeToken={destToken}
           tokens={allDestTokens}
           noTokens={noTokens}
-          tokenToDisable={sourceChainId === destChainId && sourceToken}
+          tokenToDisable={destToken}
+          chainId={destChainId}
         />
       </div>
     </div>

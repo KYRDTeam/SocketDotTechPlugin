@@ -12,6 +12,7 @@ interface TokenInputProps {
   tokens: Currency[];
   noTokens: boolean;
   tokenToDisable?: Currency;
+  chainId: number;
 }
 
 export const TokenInput = (props: TokenInputProps) => {
@@ -24,6 +25,7 @@ export const TokenInput = (props: TokenInputProps) => {
     tokens,
     noTokens = false,
     tokenToDisable,
+    chainId,
   } = props;
   return (
     <div className="skt-w flex items-center justify-between mt-2.5 overflow-hidden pb-[1.125rem]">
@@ -35,6 +37,7 @@ export const TokenInput = (props: TokenInputProps) => {
           activeToken={activeToken}
           tokens={tokens}
           tokenToDisable={tokenToDisable}
+          chainId={chainId}
         />
       )}
       <div className="skt-w flex flex-1">

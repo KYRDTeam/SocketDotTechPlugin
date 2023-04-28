@@ -191,7 +191,6 @@ export const RouteDetails = () => {
 
   // Returns the text shown on the button depending on the status.
   const getButtonStatus = useMemo(() => {
-    console.log({ sourceAmount });
     if (!sourceAmount || sourceAmount === "0") {
       return QuoteStatus.ENTER_AMOUNT;
     }
@@ -227,7 +226,7 @@ export const RouteDetails = () => {
           !isEnoughBalance ||
           (bestRoute?.refuel && !isNativeTokenEnough)
         }
-        classNames="bg-primary-200 h-11 text-sm rounded-2xl text-gray-800"
+        classNames="bg-primary-200 h-11 text-sm rounded-2xl text-gray-800 font-medium"
       >
         {getButtonStatus}
       </Button>

@@ -84,13 +84,13 @@ export const SwapSlippage = () => {
   );
 
   return (
-    <div className="mt-6">
+    <div className="mt-6 bg-gray-900 rounded-2xl p-7">
       <div className="flex justify-between relative">
         <div className="skt-w flex items-center mb-1.5">
           <SubTitle>Swap Slippage</SubTitle>
           <Popover
             content="Your swap transaction will revert if the price changes unfavourably by more than this percentage."
-            classNames="bottom-8"
+            classNames="bg-gray-200 bottom-8 gray"
             cursor="cursor-help"
           >
             <Info className="ml-1.5 w-4 h-4 text-widget-secondary" />
@@ -102,7 +102,7 @@ export const SwapSlippage = () => {
           </span>
         ) : null}
       </div>
-      <div className="flex -mx-1 justify-between">
+      <div className="flex -mx-1 justify-between mt-2">
         <RadioCheckbox
           id="swap-slippage-1"
           name="swap-slippage"

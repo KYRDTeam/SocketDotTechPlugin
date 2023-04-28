@@ -146,3 +146,16 @@ export const getSwapTx = (route: any, currentTx: number) => {
     return null;
   }
 };
+
+export const ellipsis = (string: string, start = 8, end = 4) => {
+  if (!string) return "";
+  return `${string.substring(0, start)}...${string.substring(
+    string.length - end
+  )}`;
+};
+
+export const compareAddressWeb3 = (addressX = "", addressY = "") => {
+  const reformatAddressX = addressX.includes("0x") ? addressX : "0x" + addressX;
+  const reformatAddressY = addressY.includes("0x") ? addressY : "0x" + addressY;
+  return reformatAddressX.toLowerCase() === reformatAddressY.toLowerCase();
+};

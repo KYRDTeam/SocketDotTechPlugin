@@ -26,6 +26,8 @@ export const SettingsModal = () => {
           closeModal={() => toggleSettingsModal(false)}
           style={{ display: isSettingsOpen ? "block" : "none" }}
           classNames="z-50"
+          noBorder
+          typeHeader="center"
         >
           <div className="skt-w px-3 pt-3">
             {/* Sort options */}
