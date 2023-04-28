@@ -170,6 +170,8 @@ export const ReviewModal = ({
         showTxDetails ? () => setShowTxDetails(!showTxDetails) : closeModal
       }
       style={style}
+      noBorder
+      typeHeader="center"
     >
       <div className="skt-w flex flex-col justify-between flex-1 relative">
         <div
@@ -311,7 +313,7 @@ export const ReviewModal = ({
 
             <Button
               onClick={quoteUpdated ? updateSelectedRoute : openTxModal}
-              classNames={`${quoteUpdated ? "h-12" : ""}`}
+              classNames={`font-medium ${quoteUpdated ? "h-12" : ""}`}
               disabled={!bestRoute}
             >
               {quoteUpdated
