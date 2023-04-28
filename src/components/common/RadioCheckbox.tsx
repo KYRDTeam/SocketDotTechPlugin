@@ -17,7 +17,7 @@ export const RadioCheckbox = (props: RadioProps) => {
     <div className="skt-w relative mx-1">
       <label
         htmlFor={id}
-        className={`skt-w flex items-center justify-center w-16 relative z-10 p-2 cursor-pointer border text-sm ${
+        className={`skt-w flex items-center justify-center w-16 relative z-10 p-2 cursor-pointer border text-md ${
           checked
             ? "border-primary-200 text-primary-200 border-1"
             : "text-white-900 border-gray-350"

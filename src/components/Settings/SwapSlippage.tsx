@@ -97,7 +97,7 @@ export const SwapSlippage = () => {
           </Popover>
         </div>
         {buttonInput || customInput ? (
-          <span className="text-xs text-widget-secondary ml-3">
+          <span className="text-sm text-widget-secondary ml-3">
             Slippage: {buttonInput ?? customInput}%
           </span>
         ) : null}

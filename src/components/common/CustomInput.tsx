@@ -12,7 +12,7 @@ export const CustomInputBox = (props: {
     <div className="skt-w mx-1 relative">
       <input
         type="number"
-        className={`border-gray-350  skt-w bg-transparent text-widget-secondary text-sm skt-w-input border-[1.5px] pb-0.5 h-full w-full px-3 focus:border-primary-200 text-ellipsis ${
+        className={`border-gray-350  skt-w bg-transparent text-widget-secondary text-md skt-w-input border-[1.5px] pb-0.5 h-full w-full px-3 focus:border-primary-200 text-ellipsis ${
           value ? "border-primary-200" : ""
         }`}
         style={{ borderRadius: "14px" }}

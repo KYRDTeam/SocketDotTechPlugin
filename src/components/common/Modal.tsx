@@ -66,9 +66,9 @@ export const Modal = ({
               onClick={closeModal}
               className="h-6 w-6 absolute left-2 top-2 text-white-900 cursor-pointer"
             />
-            <h3 className="text-center text-white-900 my-0 font-normal">
+            <h2 className="text-center text-white-900 my-0 font-semibold">
               {title}
-            </h3>
+            </h2>
           </div>
         )}
 

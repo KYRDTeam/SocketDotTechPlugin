@@ -118,7 +118,9 @@ export const TokenSelect = (props: Props) => {
             className="skt-w h-28px w-28px rounded-full mr-1.5"
           />
           <div className="skt-w flex items-center">
-            <span className="mr-0.5 text-lg">{activeToken?.symbol}</span>
+            <span className="mr-0.5 text-lg font-semibold">
+              {activeToken?.symbol}
+            </span>
             <ChevronDown className="skt-w w-4 h-4" />
           </div>
         </button>
