@@ -252,7 +252,7 @@ export const Output = ({
       <div className="p-4 rounded-xl bg-gray-900">
         <div className="skt-w flex items-center justify-between">
           <div className="skt-w flex items-center">
-            <span className="skt-w text-widget-secondary text-sm mr-1.5">
+            <span className="skt-w text-gray-400 text-sm mr-1.5">
               You receive
             </span>
           </div>

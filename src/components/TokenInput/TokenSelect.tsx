@@ -28,8 +28,8 @@ export const TokenSelect = (props: Props) => {
   const allNetworks = useSelector((state: any) => state.networks.allNetworks);
 
   const currentNetwork = useMemo(() => {
-    return allNetworks.find((e) => e.chainId === chainId);
-  }, []);
+    return allNetworks?.find((e) => e.chainId === chainId);
+  }, [allNetworks, chainId]);
 
   // Hook that gives you all the balances for a user on all chains.
   const { data: tokensWithBalances } = useAllTokenBalances();

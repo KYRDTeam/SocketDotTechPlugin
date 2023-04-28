@@ -81,11 +81,8 @@ export function ChainSelect({
   const { borderRadius } = customSettings.customization;
 
   useEffect(() => {
-    // setFilteredNetworks(
-    //   networks?.filter((x: Network) => x?.chainId !== activeNetworkId)
-    // );
     setFilteredNetworks(networks);
-  }, [networks, activeNetworkId, activeNetwork]);
+  }, [networks]);
 
   return (
     <div
