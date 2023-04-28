@@ -2,7 +2,7 @@ import useClickOutside from "../../hooks/useClickOutside";
 import { Network } from "../../types";
 import { ReactNode, useContext, useState } from "react";
 import { useEffect } from "react";
-import { ChevronDown } from "react-feather";
+import { Check, ChevronDown } from "react-feather";
 import { CustomizeContext } from "../../providers/CustomizeProvider";
 
 interface ChainDropdownProps {
@@ -15,35 +15,48 @@ function Option({
   network,
   children,
   onClick,
-  selected = false,
+  isActiveNetwork = false,
   borderRadius = 1,
   onlyOneNetwork = false,
+  selected,
 }: {
   network: Network;
   children?: ReactNode;
   onClick?: () => void;
-  selected?: boolean;
+  isActiveNetwork?: boolean;
   borderRadius?: number;
   onlyOneNetwork?: boolean;
+  selected?: boolean;
 }) {
+  console.log({ selected });
   return (
     <div
       className={`skt-w flex items-center cursor-pointer flex-shrink-0 ${
         selected
           ? ""
-          : "px-4 py-2 hover:bg-widget-secondary hover:bg-opacity-80"
+          : isActiveNetwork
+          ? "px-4 py-2 bg-gray-900 hover:bg-gray-900 cursor-default"
+          : "px-4 py-2 hover:bg-whiteAlpha-200"
       }`}
       onClick={onClick}
     >
-      <div className="skt-w flex items-center">
-        <img
-          src={network?.icon}
-          className="skt-w h-5 w-5"
-          style={{ borderRadius: `calc(0.3rem * ${borderRadius})` }}
-        />
-        <span className="skt-w text-sm text-widget-primary mx-1">
-          {network?.name}
-        </span>
+      <div className="skt-w w-full flex justify-between items-center">
+        <div className="flex items-center">
+          <img
+            src={network?.icon}
+            className={`skt-w ${
+              selected ? "h-5 w-5" : "h-6 w-6"
+            } mr-1 rounded-lg`}
+          />
+          <span className="skt-w text-widget-primary mx-1">
+            {network?.name}
+          </span>
+        </div>
+        {isActiveNetwork && (
+          <div>
+            <Check className="w-4 h-4 text-primary-200" strokeWidth={2} />
+          </div>
+        )}
       </div>
       {selected && !onlyOneNetwork && (
         <ChevronDown className="skt-w text-widget-secondary w-4 h-4" />
@@ -68,9 +81,10 @@ export function ChainSelect({
   const { borderRadius } = customSettings.customization;
 
   useEffect(() => {
-    setFilteredNetworks(
-      networks?.filter((x: Network) => x?.chainId !== activeNetworkId)
-    );
+    // setFilteredNetworks(
+    //   networks?.filter((x: Network) => x?.chainId !== activeNetworkId)
+    // );
+    setFilteredNetworks(networks);
   }, [networks, activeNetworkId, activeNetwork]);
 
   return (
@@ -80,7 +94,7 @@ export function ChainSelect({
           ? null
           : () => setOpenDropdown(!openDropdown)
       }
-      className={`skt-w relative px-4 py-2 bg-gray-900 rounded-xl ${
+      className={`skt-w relative px-4 py-9px bg-gray-900 rounded-14px ${
         openDropdown ? "bg-widget-interactive h-auto" : ""
       }`}
       // style={{ borderRadius: `calc(0.5rem * ${borderRadius})` }}
@@ -89,9 +103,9 @@ export function ChainSelect({
       {activeNetwork ? (
         <Option
           network={activeNetwork}
-          selected
           borderRadius={borderRadius}
           onlyOneNetwork={networks?.length < 2}
+          selected
         />
       ) : (
         <span
@@ -104,10 +118,10 @@ export function ChainSelect({
 
       {openDropdown && (
         <div
-          className="skt-w pt-1 z-10 left-0 absolute bg-gray-550 flex flex-col w-full  overflow-y-auto overflow-hidden"
+          className="skt-w py-4 z-10 w-300 rounded-2xl left-0 top-10 absolute bg-gray-550 flex flex-col"
           style={{
-            borderBottomRightRadius: `calc(0.75rem * ${borderRadius})`,
-            borderBottomLeftRadius: `calc(0.75rem * ${borderRadius})`,
+            // borderBottomRightRadius: `calc(0.75rem * ${borderRadius})`,
+            // borderBottomLeftRadius: `calc(0.75rem * ${borderRadius})`,
             boxShadow: "0px 6px 42px rgba(0, 0, 0, 0.8)",
           }}
         >
@@ -118,6 +132,7 @@ export function ChainSelect({
                 key={`${index}-chain`}
                 onClick={() => onChange(network)}
                 borderRadius={borderRadius}
+                isActiveNetwork={network?.chainId === activeNetworkId}
               />
             ) : null;
           })}

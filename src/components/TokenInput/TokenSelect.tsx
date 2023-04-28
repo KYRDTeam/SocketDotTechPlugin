@@ -115,10 +115,10 @@ export const TokenSelect = (props: Props) => {
         >
           <img
             src={activeToken?.logoURI}
-            className="skt-w h-6 w-6 rounded-full mr-1.5"
+            className="skt-w h-28px w-28px rounded-full mr-1.5"
           />
           <div className="skt-w flex items-center">
-            <span className="mr-0.5">{activeToken?.symbol}</span>
+            <span className="mr-0.5 text-lg">{activeToken?.symbol}</span>
             <ChevronDown className="skt-w w-4 h-4" />
           </div>
         </button>

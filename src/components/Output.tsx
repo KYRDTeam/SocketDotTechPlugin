@@ -4,7 +4,7 @@ import { Currency, Network, onNetworkChange, onTokenChange } from "../types";
 
 // component
 import { TokenInput } from "./TokenInput";
-import { ChainSelect } from "./common/ChainSelect";
+import { ChainSelect } from "./common/ChainSelect2";
 import { Balance } from "./common/Balance";
 
 // actions
@@ -239,7 +239,6 @@ export const Output = ({
     300,
     [_destToken]
   );
-  console.log({ destChainId });
 
   return (
     <div className="skt-w">

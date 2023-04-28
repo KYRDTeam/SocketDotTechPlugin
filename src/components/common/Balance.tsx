@@ -20,12 +20,12 @@ export const Balance = ({
   return (
     <button
       disabled={!onClick}
-      className={`skt-w skt-w-input skt-w-button text-widget-primary text-opacity-70 text-xs text-right flex items-center transition-all ${
+      className={`skt-w skt-w-input skt-w-button text-widget-primary text-opacity-70 text-sm text-right flex items-center transition-all ${
         onClick ? "" : ""
       }`}
       onClick={onClick}
     >
-      <WalletIcon />
+      <WalletIcon width="24px" height="24px" />
       <span className="mx-1 text-primary-200">
         {token && _formattedBalance} {token?.symbol}
       </span>
