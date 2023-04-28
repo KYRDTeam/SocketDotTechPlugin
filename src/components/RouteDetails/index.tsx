@@ -226,7 +226,7 @@ export const RouteDetails = () => {
           !isEnoughBalance ||
           (bestRoute?.refuel && !isNativeTokenEnough)
         }
-        classNames="bg-primary-200 h-11 text-md rounded-2xl text-gray-800 font-medium"
+        classNames="bg-primary-200 h-11 text-md rounded-2xl text-gray-800 font-semibold"
       >
         {getButtonStatus}
       </Button>

@@ -16,7 +16,7 @@ export const Settings = () => {
     <>
       <button
         onClick={() => toggleSettingsModal(true)}
-        className="skt-w skt-w-button skt-w-input flex ml-3 p-2 rounded-full text-gray-200 hover:text-primary-200"
+        className="skt-w skt-w-button skt-w-input flex ml-3 p-1.5 rounded-full text-gray-200 hover:text-primary-200"
         style={{
           backgroundColor: "#010101",
         }}

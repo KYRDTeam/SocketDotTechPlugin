@@ -46,8 +46,7 @@ export const SortPreference = () => {
     <div className="skt-w flex items-center relative z-30 justify-between bg-gray-900 rounded-2xl p-7">
       <SubTitle>Preferred Route</SubTitle>
       <div
-        className="skt-w relative border border-widget-secondary-text border-opacity-40 flex w-auto ml-2"
-        style={{ borderRadius: `calc(0.375rem * ${borderRadius})` }}
+        className="skt-w relative border border-gray-400 flex w-auto ml-2 rounded-xl"
         ref={dropdownRef}
       >
         <Option onClick={() => openDropdown(!dropdown)} active>
@@ -90,8 +89,8 @@ const Option = ({
 }) => {
   return (
     <button
-      className={`skt-w skt-w-input skt-w-button w-32 px-2 py-2 text-widget-secondary text-md flex items-center justify-between ${
-        active ? "" : "hover:bg-widget-secondary"
+      className={`skt-w skt-w-input skt-w-button w-32 px-2 py-2 bg-gray-900 text-widget-secondary text-sm flex items-center justify-between ${
+        active ? "" : "hover:bg-whiteAlpha-100"
       }`}
       onClick={onClick}
     >

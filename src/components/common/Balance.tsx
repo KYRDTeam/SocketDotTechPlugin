@@ -20,7 +20,7 @@ export const Balance = ({
   return (
     <button
       disabled={!onClick}
-      className={`skt-w skt-w-input skt-w-button text-widget-primary text-opacity-70 text-sm text-right flex items-center transition-all ${
+      className={`skt-w font-semibold skt-w-input skt-w-button text-widget-primary text-opacity-70 text-sm text-right flex items-center transition-all ${
         onClick ? "" : ""
       }`}
       onClick={onClick}

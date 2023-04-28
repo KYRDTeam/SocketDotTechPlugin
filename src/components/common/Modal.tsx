@@ -58,15 +58,15 @@ export const Modal = ({
         )}
         {typeHeader === "center" && (
           <div
-            className={`skt-w p-3 pt-2.5 relative text-white ${
+            className={`skt-w mb-4 p-3 pt-2.5 relative text-white ${
               !noBorder ? "border-b border-widget-secondary" : ""
             } ${noPadding ? "mx-5 mt-5" : ""}`}
           >
             <ArrowLeft
               onClick={closeModal}
-              className="h-6 w-6 absolute left-2 top-2 text-white-900 cursor-pointer"
+              className="h-6 w-6 absolute left-2 top-4 text-white-900 cursor-pointer"
             />
-            <h2 className="text-center text-white-900 my-0 font-semibold">
+            <h2 className="text-center text-xl text-white-900 my-0 font-semibold">
               {title}
             </h2>
           </div>
