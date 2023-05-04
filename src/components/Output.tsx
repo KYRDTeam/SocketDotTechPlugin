@@ -253,7 +253,7 @@ export const Output = ({
         <div className="skt-w flex items-center justify-between">
           <div className="skt-w flex items-center">
             <span className="skt-w text-gray-400 text-md mr-1.5">
-              You receive
+              You Receive
             </span>
           </div>
           {!noTokens && (

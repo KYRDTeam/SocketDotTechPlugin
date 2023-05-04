@@ -100,6 +100,7 @@ export const TokenSelect = (props: Props) => {
     const _filteredTokens = filteredTokens?.filter(
       (x: Currency) =>
         x?.symbol?.toLowerCase()?.includes(searchInput.toLowerCase()) ||
+        x?.name?.toLowerCase()?.includes(searchInput.toLowerCase()) ||
         x?.address?.toLowerCase() === searchInput.toLowerCase()
     );
     setDisplayTokens(_filteredTokens);

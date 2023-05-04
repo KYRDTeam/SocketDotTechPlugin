@@ -17,6 +17,7 @@ import { setError } from "../state/modals";
 import { setBestRoute } from "../state/quotesSlice";
 
 import {
+  compareAddressWeb3,
   filterTokensByChain,
   formatCurrencyAmount,
   parseCurrencyAmount,
@@ -302,6 +303,10 @@ export const Input = ({
     } else formateAndParseAmount(balance);
   }
 
+  const isNativeToken = compareAddressWeb3(
+    tokenWithBalance?.tokenAddress,
+    NATIVE_TOKEN_ADDRESS
+  );
   // Reset source amount on mount
   useEffect(() => {
     inputAmountFromReduxState && dispatch(setSourceAmount(null));
@@ -328,14 +333,17 @@ export const Input = ({
       <div className="p-4 rounded-xl bg-gray-900">
         <div className="skt-w flex items-center justify-between">
           <div className="skt-w flex items-center">
-            <span className="skt-w text-gray-400 text-md mr-1.5">You pay</span>
+            <span className="skt-w text-gray-400 text-md mr-1.5">You Pay</span>
           </div>
-          {!noTokens && (
+          {!noTokens && !isNativeToken && (
             <Balance
               token={tokenWithBalance}
               isLoading={isBalanceLoading}
               onClick={() => setMaxBalance(tokenWithBalance?.balance)}
             />
+          )}
+          {!noTokens && isNativeToken && (
+            <Balance token={tokenWithBalance} isLoading={isBalanceLoading} />
           )}
         </div>
 
