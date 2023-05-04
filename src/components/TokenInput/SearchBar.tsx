@@ -14,12 +14,12 @@ export const SearchBar = (props: SearchBarProps) => {
   const { borderRadius } = customSettings.customization;
 
   return (
-    <div className="skt-w rounded-2xl flex items-center px-4 py-2 w-full bg-gray-800 text-widget-primary text-sm overflow-hidden focus-within:border-widget-secondary-text relative">
+    <div className="skt-w rounded-2xl flex items-center px-4 h-48px w-full bg-gray-800 text-widget-primary text-sm overflow-hidden focus-within:border-widget-secondary-text relative">
       <Search className="skt-w w-5 h-5 text-gray-400 mr-2" />
       <input
         onChange={(e) => handleInput(e.target.value)}
         placeholder="Find a token by name, symbol or address"
-        className="stk-w skt-w-input w-full border-none py-2 pr-7 bg-gray-800 overflow-x-hidden overflow-ellipsis"
+        className="stk-w text-15px skt-w-input w-full border-none pr-7 bg-gray-800 overflow-x-hidden overflow-ellipsis"
         role="search"
         value={searchInput}
         spellCheck={false}

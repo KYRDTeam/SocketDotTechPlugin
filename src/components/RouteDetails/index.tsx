@@ -200,8 +200,11 @@ export const RouteDetails = () => {
     if (!isEnoughBalance) {
       return ButtonTexts.NOT_ENOUGH_BALANCE;
     }
+    if (!bestRoute) {
+      return ButtonTexts.NO_ROUTES_AVAILABLE;
+    }
     return ButtonTexts.REVIEW_QUOTE;
-  }, [sourceAmount, isEnoughBalance, isQuotesLoading]);
+  }, [sourceAmount, isEnoughBalance, isQuotesLoading, bestRoute]);
 
   return (
     <InnerCard classNames="bg-gray-700">

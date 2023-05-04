@@ -51,14 +51,15 @@ export enum PrepareTxStatus {
 
 export enum QuoteStatus {
   FETCHING_QUOTE = "Fetching best quote...",
-  NO_ROUTES_AVAILABLE = "No routes available",
+  NO_ROUTES_AVAILABLE = "No routing option found",
   ENTER_AMOUNT = "Enter an amount",
 }
 
 export enum ButtonTexts {
   NOT_ENOUGH_NATIVE_BALANCE = "Native token not enough",
   NOT_ENOUGH_BALANCE = "Insufficient balance",
-  REVIEW_QUOTE = "Review Quote",
+  REVIEW_QUOTE = "Review Transfer",
+  NO_ROUTES_AVAILABLE = "No routing option found",
   CHECKING_APPROVAL = "Checking approval",
   APPROVING = "Approving",
   APPROVE = "Approve",

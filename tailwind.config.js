@@ -104,9 +104,13 @@ module.exports = {
         5.5: "1.375rem",
         6.5: "1.625rem",
         35: "35px",
+        "48px": "48px",
         300: "300px",
         "28px": "28px",
         "38px": "38px",
+      },
+      fontSize: {
+        "15px": "15px",
       },
       borderRadius: {
         "14px": "14px",

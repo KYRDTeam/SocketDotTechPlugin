@@ -153,7 +153,7 @@ export const TokenSelect = (props: Props) => {
               );
               return (
                 <button
-                  className="skt-w skt-w-input skt-w-button flex hover:bg-gray-800 items-center px-7 py-3 w-full justify-between disabled:opacity-30 disabled:pointer-events-none"
+                  className="skt-w skt-w-input skt-w-button flex hover:bg-gray-800 items-center px-7 py-4 w-full justify-between disabled:opacity-30 disabled:pointer-events-none"
                   onClick={() => selectToken(token)}
                   key={token?.address}
                   disabled={tokenToDisable?.address === token?.address}
@@ -171,13 +171,13 @@ export const TokenSelect = (props: Props) => {
                         {token?.name}
                       </div>
                       {isNativeToken && (
-                        <div className="text-sm text-gray-400 mr-2">
+                        <div className="text-md text-gray-400 mr-2">
                           {currentNetwork?.name} Native token
                         </div>
                       )}
                       {!isNativeToken && (
                         <div className="flex items-center">
-                          <div className="text-sm text-gray-400 mr-2">
+                          <div className="text-md text-gray-400 mr-2">
                             {ellipsis(token?.address, 7, 4)}
                           </div>
                           <CopyToClipboard value={token.address} />
@@ -185,6 +185,7 @@ export const TokenSelect = (props: Props) => {
                             href={`${currentNetwork.explorers[0]}/token/${token.address}`}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             className="skt-w skt-w-anchor flex items-center hover:underline"
                           >
                             <ExternalLink className="w-4 h-4 text-gray-400 hover:text-primary-200" />
@@ -194,7 +195,7 @@ export const TokenSelect = (props: Props) => {
                     </div>
                   </div>
 
-                  <span className="skt-w text-widget-secondary text-sm text-right font-medium">
+                  <span className="skt-w text-whiteAlpha-900 text-md text-right font-medium">
                     {showBalance(token)} {token.symbol}
                   </span>
                 </button>
