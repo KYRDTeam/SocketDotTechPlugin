@@ -261,7 +261,7 @@ export const Output = ({
           )}
         </div>
         <TokenInput
-          amount={`${outputAmount ? `~${outputAmount}` : ""}`}
+          amount={`${outputAmount ? outputAmount : ""}`}
           updateToken={_setDestToken}
           activeToken={destToken}
           tokens={allDestTokens}

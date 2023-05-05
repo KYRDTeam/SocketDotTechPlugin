@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CheckCircle, Check, Copy } from "react-feather";
+import ToolTip from "./Tooltip";
 
 const CopyToClipboard = ({ value }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -33,17 +34,31 @@ const CopyToClipboard = ({ value }) => {
 
   return (
     <>
-      {isCopied && (
-        <div className="rounded-full w-4 h-4 bg-primary-200 mr-2">
-          <Check className="w-3 h-3 text-black" strokeWidth={2} />
-        </div>
-      )}
-      {!isCopied && (
-        <Copy
-          onClick={handleCopyClick}
-          className="w-4 h-4 mr-2 text-gray-400 hover:text-primary-200"
-        />
-      )}
+      <ToolTip tooltip={isCopied ? "Copied" : "Copy"} leftParams={30}>
+        {isCopied && (
+          <div className="relative">
+            <div className="rounded-full w-4 h-4 bg-primary-200 mr-2">
+              <Check className="w-3 h-3 text-black" strokeWidth={2} />
+            </div>
+
+            {/* <div
+              style={{
+                left: "-30px",
+                boxShadow: "0px 6px 42px rgba(0, 0, 0, 0.8)",
+              }}
+              className="absolute top-5 left-4 py-1 px-3 bg-gray-500 text-sm"
+            >
+              Copied
+            </div> */}
+          </div>
+        )}
+        {!isCopied && (
+          <Copy
+            onClick={handleCopyClick}
+            className="w-4 h-4 mr-2 text-gray-400 hover:text-primary-200"
+          />
+        )}
+      </ToolTip>
     </>
   );
 };

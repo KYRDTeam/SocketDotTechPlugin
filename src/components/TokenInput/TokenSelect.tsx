@@ -10,6 +10,7 @@ import { ellipsis, compareAddressWeb3 } from "../../utils";
 import { NATIVE_TOKEN_ADDRESS } from "@socket.tech/socket-v2-sdk/lib/src/constants";
 import { useSelector } from "react-redux";
 import CopyToClipboard from "../common/CopyToClipboard";
+import ToolTip from "../common/Tooltip";
 interface Props {
   activeToken: Currency;
   updateToken: (token: Currency) => void;
@@ -186,15 +187,17 @@ export const TokenSelect = (props: Props) => {
                             {ellipsis(token?.address, 7, 4)}
                           </div>
                           <CopyToClipboard value={token.address} />
-                          <a
-                            href={`${currentNetwork.explorers[0]}/token/${token.address}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="skt-w skt-w-anchor flex items-center hover:underline"
-                          >
-                            <ExternalLink className="w-4 h-4 text-gray-400 hover:text-primary-200" />
-                          </a>
+                          <ToolTip tooltip="View on explorer" leftParams={60}>
+                            <a
+                              href={`${currentNetwork.explorers[0]}/token/${token.address}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="skt-w skt-w-anchor flex items-center hover:underline"
+                            >
+                              <ExternalLink className="w-4 h-4 text-gray-400 hover:text-primary-200" />
+                            </a>
+                          </ToolTip>
                         </div>
                       )}
                     </div>
