@@ -50,7 +50,7 @@ export enum PrepareTxStatus {
 }
 
 export enum QuoteStatus {
-  FETCHING_QUOTE = "Fetching best quote...",
+  FETCHING_QUOTE = "Fetching the best route...",
   NO_ROUTES_AVAILABLE = "No routing option found",
   ENTER_AMOUNT = "Enter an amount",
 }
