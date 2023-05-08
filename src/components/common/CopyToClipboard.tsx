@@ -37,8 +37,8 @@ const CopyToClipboard = ({ value }) => {
       <ToolTip tooltip={isCopied ? "Copied" : "Copy"} leftParams={30}>
         {isCopied && (
           <div className="relative">
-            <div className="rounded-full w-4 h-4 bg-primary-200 mr-2">
-              <Check className="w-3 h-3 text-black" strokeWidth={2} />
+            <div className="rounded-full w-4 h-4 bg-primary-200 mr-2 flex justify-center items-center">
+              <Check className="w-3 h-3 text-black" strokeWidth={3} />
             </div>
 
             {/* <div
