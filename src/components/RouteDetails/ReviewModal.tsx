@@ -348,7 +348,7 @@ const RouteDetailRow = ({
   children?: ReactNode;
 }) => {
   return (
-    <div className="skt-w w-full flex justify-between text-widget-secondary my-1.5">
+    <div className="skt-w w-full flex justify-between my-1.5 text-sm">
       <span className="text-gray-400">{label}</span>
       <span className="text-white-200">{value}</span>
       {children}

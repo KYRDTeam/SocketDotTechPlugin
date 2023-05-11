@@ -60,7 +60,7 @@ export const TokenDetail = (props: TokenAssetProps) => {
           <span
             className={`skt-w text-widget-primary w-full font-medium overflow-hidden whitespace-nowrap text-ellipsis flex flex-col ${
               rtl ? "text-right items-end" : "text-left items-start"
-            } ${small ? "text-xs" : "text-sm"}`}
+            } ${small ? "text-sm" : "text-md"}`}
           >
             <span>
               {formattedAmount} {token?.symbol}
