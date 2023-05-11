@@ -29,7 +29,7 @@ export const TokenDetail = (props: TokenAssetProps) => {
 
   return (
     <div
-      className={`skt-w flex flex-col flex-1 max-w-full ${
+      className={`skt-w flex flex-col flex-1 max-w-full text-md ${
         rtl ? "items-end" : "flex-row"
       }`}
       style={{ borderRadius: `calc(0.7rem * ${borderRadius})` }}
@@ -42,7 +42,7 @@ export const TokenDetail = (props: TokenAssetProps) => {
         <div className={`skt-w relative flex flex-shrink-0`}>
           <img
             src={token?.logoURI}
-            className="skt-w w-6 h-6 rounded-full border-widget-primary"
+            className="skt-w w-8 h-6 rounded-full border-widget-primary"
           />
           {!!refuel?.amount && (
             <img
@@ -78,7 +78,7 @@ export const TokenDetail = (props: TokenAssetProps) => {
         </div>
       </div>
       <p
-        className={`skt-w text-xs text-widget-secondary mt-1 ${
+        className={`skt-w text-sm text-widget-secondary mt-1 ${
           rtl ? "text-right" : "text-left"
         }`}
       >

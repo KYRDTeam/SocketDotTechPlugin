@@ -36,6 +36,12 @@ export const ReviewModal = ({
   const [showTxDetails, setShowTxDetails] = useState<boolean>(false);
   const [quoteUpdated, setQuoteUpdated] = useState<boolean>(false);
   const [isSameChainSwap, setIsSameChainSwap] = useState<boolean>(false);
+  const sortPrefFromStore = useSelector((state: any) => state.quotes.sortPref);
+
+  const LABEL_STATE = {
+    output: "High Return",
+    time: "Fastest",
+  };
 
   const customSettings = useContext(CustomizeContext);
   const { borderRadius } = customSettings.customization;
@@ -265,6 +271,11 @@ export const ReviewModal = ({
                   }`}
                 />
               )}
+
+            <RouteDetailRow
+              label="Preferred Route"
+              value={LABEL_STATE[sortPrefFromStore]}
+            />
           </div>
         </div>
 
@@ -337,7 +348,7 @@ const RouteDetailRow = ({
   children?: ReactNode;
 }) => {
   return (
-    <div className="skt-w w-full flex justify-between text-sm text-widget-secondary my-1.5">
+    <div className="skt-w w-full flex justify-between text-widget-secondary my-1.5">
       <span className="text-gray-400">{label}</span>
       <span className="text-white-200">{value}</span>
       {children}

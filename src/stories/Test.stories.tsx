@@ -73,10 +73,10 @@ const Template = (args: WidgetProps) => {
 
   return (
     <div
-      className="skt-w bg-gray-900 p-10"
+      className="skt-w bg-gray-900 p-10 text-white-900"
       style={{ height: "calc(100vh - 40px)" }}
     >
-      <p style={{ color: "black" }}>
+      <p>
         User Address : {userAddress}
         <br />
         ChainId: {chain}

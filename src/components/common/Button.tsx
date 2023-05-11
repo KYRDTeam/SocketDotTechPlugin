@@ -28,7 +28,7 @@ export const Button = (props: ButtonProps) => {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`skt-w skt-w-input skt-w-button h-11 px-3 flex items-center justify-center transition-all duration-100 ease-linear w-full bg-primary-200 text-sm rounded-2xl text-gray-800 hover:bg-opacity-90 
+      className={`skt-w skt-w-input font-semibold skt-w-button h-11 px-3 flex items-center justify-center transition-all duration-100 ease-linear w-full bg-primary-200 text-sm rounded-2xl text-gray-800 hover:bg-opacity-90 
       disabled:bg-primary-450
       disabled:text-white-900 
       disabled:opacity-50 

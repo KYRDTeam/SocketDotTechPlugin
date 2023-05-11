@@ -25,7 +25,7 @@ import { Info } from "react-feather";
 import { formatCurrencyAmount } from "../../utils/";
 import { SortOptions } from "@socket.tech/socket-v2-sdk";
 
-export const RouteDetails = () => {
+export const RouteDetails = ({ ...props }) => {
   const dispatch = useDispatch();
 
   const sourceChainId = useSelector(
@@ -220,19 +220,30 @@ export const RouteDetails = () => {
         )}
         {quotesStatus()}
       </div> */}
-      <Button
-        onClick={review}
-        isLoading={sourceAmount && sourceAmount !== "0" && isQuotesLoading}
-        disabled={
-          !bestRoute ||
-          isQuotesLoading ||
-          !isEnoughBalance ||
-          (bestRoute?.refuel && !isNativeTokenEnough)
-        }
-        classNames="bg-primary-200 h-11 text-md rounded-2xl text-gray-800 font-semibold"
-      >
-        {getButtonStatus}
-      </Button>
+      {!!props.provider && (
+        <Button
+          onClick={review}
+          isLoading={sourceAmount && sourceAmount !== "0" && isQuotesLoading}
+          disabled={
+            !bestRoute ||
+            isQuotesLoading ||
+            !isEnoughBalance ||
+            (bestRoute?.refuel && !isNativeTokenEnough)
+          }
+          classNames="bg-primary-200 h-11 text-md rounded-2xl text-gray-800 font-semibold"
+        >
+          {getButtonStatus}
+        </Button>
+      )}
+      {!props.provider && (
+        <Button
+          onClick={() => props.onConnect()}
+          classNames="bg-primary-200 h-11 text-md rounded-2xl text-gray-800 font-semibold"
+        >
+          Connect Wallet
+        </Button>
+      )}
+
       {/* <div className="skt-w flex items-center justify-between text-widget-secondary mt-2.5 text-xs">
         <a
           href="http://socket.tech/"
