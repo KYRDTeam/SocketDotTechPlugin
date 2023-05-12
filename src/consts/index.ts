@@ -69,3 +69,31 @@ export enum ButtonTexts {
   IN_PROGRESS = "In progress",
   REFETCHING = "Refetching...",
 }
+
+export enum ChainId {
+  MAINNET = 1,
+  BSC = 56,
+  POLYGON = 137,
+  CRONOS = 25,
+  FANTOM = 250,
+  AVALANCHE = 43114,
+  ARBITRUM = 42161,
+  AURORA = 1313161554,
+  KLAYTN = 8217,
+  OPTIMISM = 10,
+  SOLANA = 101,
+  GOERLI = 5,
+}
+
+export const SUPPORTED_BRIDGE_CHAINS = [
+  ChainId.MAINNET,
+  ChainId.BSC,
+  ChainId.POLYGON,
+  ChainId.AVALANCHE,
+  ChainId.CRONOS,
+  ChainId.FANTOM,
+  ChainId.ARBITRUM,
+  ChainId.AURORA,
+  ChainId.KLAYTN,
+  ChainId.OPTIMISM,
+];

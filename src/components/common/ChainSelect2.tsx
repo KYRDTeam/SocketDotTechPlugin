@@ -4,6 +4,7 @@ import { ReactNode, useContext, useState } from "react";
 import { useEffect } from "react";
 import { Check, ChevronDown } from "react-feather";
 import { CustomizeContext } from "../../providers/CustomizeProvider";
+import { SUPPORTED_BRIDGE_CHAINS } from "../../consts/index";
 
 interface ChainDropdownProps {
   networks: Network[];
@@ -28,7 +29,6 @@ function Option({
   onlyOneNetwork?: boolean;
   selected?: boolean;
 }) {
-  console.log({ selected });
   return (
     <div
       className={`skt-w flex items-center cursor-pointer flex-shrink-0 ${
@@ -81,7 +81,11 @@ export function ChainSelect({
   const { borderRadius } = customSettings.customization;
 
   useEffect(() => {
-    setFilteredNetworks(networks);
+    setFilteredNetworks(
+      networks?.filter((network) =>
+        SUPPORTED_BRIDGE_CHAINS.includes(network.chainId)
+      )
+    );
   }, [networks]);
 
   return (

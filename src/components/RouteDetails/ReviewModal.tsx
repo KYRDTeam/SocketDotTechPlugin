@@ -45,6 +45,7 @@ export const ReviewModal = ({
 
   const customSettings = useContext(CustomizeContext);
   const { borderRadius } = customSettings.customization;
+  const [isShowModal, setShowModal] = useState(false);
 
   // Sets the selected route if updated.
   function updateSelectedRoute() {
@@ -75,6 +76,7 @@ export const ReviewModal = ({
     selectedRoute?.route,
     selectedRoute?.path?.fromToken?.chainId
   );
+
   const sourceNativeToken = selectedRoute?.route?.userTxs.filter(
     (tx) => tx.chainId === selectedRoute?.path?.fromToken?.chainId
   )[0]?.gasFees?.asset;
@@ -200,14 +202,27 @@ export const ReviewModal = ({
           <div className="skt-w px-3 py-1.5 flex flex-col mt-1">
             {!isSameChainSwap ? (
               <>
-                <RouteDetailRow
+                <RouteDetailRow label="Platform">
+                  <div className="flex items-center">
+                    <img
+                      src={bridgeData?.protocol?.icon}
+                      className="skt-w w-5 h-5 rounded-md mr-2 border-widget-primary"
+                    />
+                    <p className="capitalize my-0 text-white-200">
+                      {BRIDGE_DISPLAY_NAMES[
+                        selectedRoute?.route?.usedBridgeNames?.[0]
+                      ] || selectedRoute?.route?.usedBridgeNames?.[0]}
+                    </p>
+                  </div>
+                </RouteDetailRow>
+                {/* <RouteDetailRow
                   label="Platform"
                   value={
                     BRIDGE_DISPLAY_NAMES[
                       selectedRoute?.route?.usedBridgeNames?.[0]
                     ] || selectedRoute?.route?.usedBridgeNames?.[0]
                   }
-                />
+                /> */}
                 <RouteDetailRow
                   label="Estimated Bridging Time"
                   value={timeInMinutes(selectedRoute?.route?.serviceTime)}
@@ -221,10 +236,17 @@ export const ReviewModal = ({
                 </RouteDetailRow>
               </>
             ) : (
-              <RouteDetailRow
-                label="Dex Name"
-                value={swapData?.protocol?.displayName}
-              />
+              <RouteDetailRow label="Dex Name">
+                <>
+                  <img
+                    src={swapData?.protocol?.icon}
+                    className="skt-w w-8 h-6 rounded-full border-widget-primary"
+                  />
+                  <p className="capitalize">
+                    {swapData?.protocol?.displayName}
+                  </p>
+                </>
+              </RouteDetailRow>
             )}
             <RouteDetailRow label="Source Gas Fee">
               <FeeDisplay

@@ -7,19 +7,26 @@ export const useGetFees = (
   gasLimit: string,
   chainId: number,
   decimals: number,
-  route: any,
+  route: any
 ) => {
   const [feesInToken, setFeesInToken] = useState<string>("");
   const [feesInUsd, setFeesInUsd] = useState<number>(0);
   const gasPrice = useGasPrice(chainId);
 
   useEffect(() => {
-    const amount =
-      !!gasLimit &&
-      !!gasPrice?.data &&
-      ethers.BigNumber.from(gasLimit)
-        .mul(ethers.BigNumber.from(gasPrice?.data.normal.gasPrice))
-        .toString();
+    // const amount =
+    //   !!gasLimit &&
+    //   !!gasPrice?.data &&
+    //   ethers.BigNumber.from(gasLimit)
+    //     .mul(ethers.BigNumber.from(gasPrice?.data.normal.gasPrice))
+    //     .toString();
+
+    const amount = route?.userTxs.reduce((acc, curr) => {
+      if (curr.chainId === chainId) {
+        return acc + (curr.gasFees?.gasAmount ?? 0);
+      }
+      return acc;
+    }, 0);
 
     if (!!amount && !!decimals) {
       const amountInToken = formatCurrencyAmount(amount, decimals).toString();

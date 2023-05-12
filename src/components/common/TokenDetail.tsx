@@ -42,7 +42,7 @@ export const TokenDetail = (props: TokenAssetProps) => {
         <div className={`skt-w relative flex flex-shrink-0`}>
           <img
             src={token?.logoURI}
-            className="skt-w w-8 h-6 rounded-full border-widget-primary"
+            className="skt-w w-6 h-6 rounded-full border-widget-primary"
           />
           {!!refuel?.amount && (
             <img
@@ -77,13 +77,16 @@ export const TokenDetail = (props: TokenAssetProps) => {
           </span>
         </div>
       </div>
-      <p
-        className={`skt-w text-sm text-widget-secondary mt-1 ${
-          rtl ? "text-right" : "text-left"
-        }`}
-      >
-        on {chain?.name}
-      </p>
+      <div className="flex items-center text-widget-secondary text-sm  mt-2">
+        on
+        <img
+          src={chain?.icon}
+          className="skt-w w-4 ml-2 mr-1 h-4 rounded-md border-widget-primary"
+        />
+        <p className={`skt-w ${rtl ? "text-right" : "text-left"}`}>
+          {chain?.name}
+        </p>
+      </div>
     </div>
   );
 };
