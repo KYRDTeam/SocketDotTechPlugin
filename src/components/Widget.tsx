@@ -31,6 +31,7 @@ import {
 } from "../state/modals";
 import { setSourceAmount } from "../state/amountSlice";
 import SwapIcon from "../components/icons/SwapIcon";
+
 // Main Widget -> Base file.
 export const Widget = (props: WidgetProps) => {
   const {

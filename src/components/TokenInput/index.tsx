@@ -1,5 +1,5 @@
 import { Currency } from "../../types";
-import { TokenSelect } from "./TokenSelect";
+import { TokenSelect } from "./TokenSelect2";
 import { TokenChipPlaceholder } from "../common/TokenChipPlaceholder";
 import { RefuelAmount } from "./RefuelAmount";
 

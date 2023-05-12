@@ -52,6 +52,9 @@ const pickColors = {
     800: "rgba(255, 255, 255, 0.80)",
     900: "rgba(255, 255, 255, 0.92)",
   },
+  blackAlpha: {
+    400: "rgba(0, 0, 0, 0.4)",
+  },
 };
 module.exports = {
   enabled: process.env.NODE_ENV === "publish",
