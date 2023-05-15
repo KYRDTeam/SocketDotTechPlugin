@@ -82,12 +82,15 @@ export const useBalance = (
   const { data, error, isValidating, mutate } = useSWR(
     shouldFetch ? [tokenAddress, chainId, userAddress, "token-balance"] : null,
     fetchBalance,
+    {
+      refreshInterval: 15000,
+    }
   );
 
   return {
     data: data?.result,
     isBalanceLoading: userAddress && !error && !data,
-    mutate
+    mutate,
   };
 };
 
@@ -107,7 +110,7 @@ export const useAllTokenBalances = () => {
     userAddress ? [userAddress, "user-balance"] : null,
     fetchAllTokenBalances,
     {
-      refreshInterval: time.USER_BALANCES_REFRESH * 1000,
+      refreshInterval: 15000,
     }
   );
 

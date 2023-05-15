@@ -143,8 +143,8 @@ Default.args = {
   // destNetworks: [10],
   // sourceNetworks: [10],
   defaultSourceNetwork: 137,
-  defaultDestNetwork: 1,
-  defaultSourceToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", // usdt
+  // defaultDestNetwork: 1,
+  // defaultSourceToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", // usdt
   // defaultDestToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
   // defaultDestToken: "0x8c6f28f2F1A3C87F0f938b96d27520d9751ec8d9",
   // defaultSourceToken: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
