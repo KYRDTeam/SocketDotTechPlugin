@@ -257,7 +257,10 @@ export const Output = ({
             </span>
           </div>
           {!noTokens && (
-            <Balance token={tokenWithBalance} isLoading={isBalanceLoading} />
+            <Balance
+              token={tokenWithBalance || destToken}
+              isLoading={isBalanceLoading}
+            />
           )}
         </div>
         <TokenInput

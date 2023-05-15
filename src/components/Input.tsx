@@ -162,7 +162,7 @@ export const Input = ({
     }
 
     if (!amount || amount == 0) {
-      updateInputAmount("");
+      // updateInputAmount("");
       dispatch(setBestRoute(null));
     }
   };
@@ -337,7 +337,7 @@ export const Input = ({
           </div>
           {!noTokens && !isNativeToken && (
             <Balance
-              token={tokenWithBalance}
+              token={tokenWithBalance || sourceToken}
               isLoading={isBalanceLoading}
               onClick={() => setMaxBalance(tokenWithBalance?.balance)}
             />
