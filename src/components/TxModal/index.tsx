@@ -512,12 +512,12 @@ export const TxModal = ({
             {!!swapTx && (
               <p className="skt-w text-widget-primary mb-3 text-xs flex items-center justify-end pr-0.5">
                 Swap slippage: {swapTx?.swapSlippage}%{" "}
-                <button
+                {/* <button
                   onClick={() => dispatch(setIsSettingsModalOpen(true))}
                   className="skt-w skt-w-button skt-w-input flex"
                 >
                   <Edit className="ml-2 w-3 h-3 text-widget-accent" />
-                </button>
+                </button> */}
               </p>
             )}
             <TxStepDetails

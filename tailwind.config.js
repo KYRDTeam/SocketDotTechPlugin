@@ -61,6 +61,19 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        sm: "640px",
+        // => @media (min-width: 640px) { ... }
+
+        md: "768px",
+        // => @media (min-width: 768px) { ... }
+
+        lg: "1024px",
+        // => @media (min-width: 1024px) { ... }
+
+        xl: "1280px",
+        // => @media (min-width: 1280px) { ... }
+      },
       textColor: {
         widget: {
           accent: "#1de9b6",
@@ -111,6 +124,8 @@ module.exports = {
         300: "300px",
         "28px": "28px",
         "38px": "38px",
+        "500px": "500px",
+        "700px": "700px",
       },
       fontSize: {
         "15px": "15px",

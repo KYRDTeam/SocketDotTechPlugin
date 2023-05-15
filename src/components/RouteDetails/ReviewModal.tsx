@@ -225,7 +225,7 @@ export const ReviewModal = ({
                 /> */}
                 <RouteDetailRow
                   label="Estimated Bridging Time"
-                  value={timeInMinutes(selectedRoute?.route?.serviceTime)}
+                  value={`~${timeInMinutes(selectedRoute?.route?.serviceTime)}`}
                 />
                 <RouteDetailRow label="Bridge Fee">
                   <FeeDisplay

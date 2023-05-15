@@ -336,7 +336,7 @@ const TxStep = ({
           {url ? (
             <a
               href={url}
-              className="skt-w skt-w-anchor underline flex items-center"
+              className="skt-w w-fit cursor-pointer skt-w-anchor underline flex items-center"
               target="_blank"
               rel="noopener noreferrer"
             >
