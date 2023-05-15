@@ -34,7 +34,7 @@ const BaseModal = ({
         <div className="relative px-6 pb-4 pt-8">
           <h1 className="text-xl text-left font-semibold my-0">{title}</h1>
           <CloseIcon
-            className="absolute top-8 right-6 cursor-pointer hover:bg-whiteAlpha-200 p-1 hover:rounded-md"
+            className="absolute text-lg top-7 right-6 cursor-pointer hover:bg-whiteAlpha-200 p-1 hover:rounded-md"
             onClick={onClose}
           />
         </div>

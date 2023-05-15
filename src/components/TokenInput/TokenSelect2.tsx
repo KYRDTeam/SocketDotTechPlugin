@@ -153,7 +153,10 @@ export const TokenSelect = (props: Props) => {
                 return (
                   <button
                     className="skt-w skt-w-input skt-w-button flex hover:bg-gray-800 items-center px-7 py-4 w-full justify-between disabled:opacity-30 disabled:pointer-events-none"
-                    onClick={() => selectToken(token)}
+                    onClick={() => {
+                      selectToken(token);
+                      setSearchInput("");
+                    }}
                     key={token?.address}
                     disabled={tokenToDisable?.address === token?.address}
                   >
