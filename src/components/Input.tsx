@@ -139,25 +139,18 @@ export const Input = ({
       //     (x: Network) => x?.chainId === defaultSourceNetwork
       //   ) ?? _supportedNetworks?.[0]
       // );
+
+      const newChain =
+        _supportedNetworks?.find(
+          (x: Network) => x?.chainId === defaultSourceNetwork
+        ) || _supportedNetworks?.[0];
+
+      dispatch(setSourceChain(newChain?.chainId));
+      sourceToken &&
+        sourceToken?.chainId !== newChain?.chainId &&
+        dispatch(setSourceToken(null));
     }
   }, [allNetworks]);
-
-  const prevDefaultNetwork = useRef<any>(defaultSourceNetwork);
-
-  useEffect(() => {
-    if (prevDefaultNetwork.current !== defaultSourceNetwork) {
-      prevDefaultNetwork.current = defaultSourceNetwork;
-      const newChain = supportedNetworks?.find(
-        (x: Network) => x?.chainId === defaultSourceNetwork
-      );
-      if (!!newChain) {
-        dispatch(setSourceChain(newChain?.chainId));
-        sourceToken &&
-          sourceToken?.chainId !== newChain?.chainId &&
-          dispatch(setSourceToken(null));
-      }
-    }
-  }, [defaultSourceNetwork, supportedNetworks, prevDefaultNetwork]);
 
   // For Input & tokens
   const inputAmountFromReduxState = useSelector(
@@ -333,7 +326,6 @@ export const Input = ({
   return (
     <div className="skt-w">
       <div className="flex justify-between items-center">
-        <p>test</p>
         <div style={{ width: "fit-content" }} className="mb-2">
           <ChainSelect
             networks={supportedNetworks}
