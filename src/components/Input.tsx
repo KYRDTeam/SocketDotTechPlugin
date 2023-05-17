@@ -55,6 +55,7 @@ export const Input = ({
     (state: any) => state.networks.sourceChainId
   );
 
+  console.log({ allNetworks });
   // Tokens
   const tokenList = useTokenList(customTokenList);
   const sourceToken = useSelector((state: any) => state.tokens.sourceToken);
@@ -140,6 +141,15 @@ export const Input = ({
       );
     }
   }, [allNetworks]);
+
+  useEffect(() => {
+    const newChain = supportedNetworks?.find(
+      (x: Network) => x?.chainId === defaultSourceNetwork
+    );
+    if (!!newChain) {
+      updateNetwork(newChain);
+    }
+  }, [defaultSourceNetwork, supportedNetworks]);
 
   // For Input & tokens
   const inputAmountFromReduxState = useSelector(
