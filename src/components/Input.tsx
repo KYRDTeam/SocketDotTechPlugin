@@ -133,11 +133,11 @@ export const Input = ({
         );
       } else setSupportedNetworks(_supportedNetworks);
 
-      updateNetwork(
-        _supportedNetworks?.find(
-          (x: Network) => x?.chainId === defaultSourceNetwork
-        ) ?? _supportedNetworks?.[0]
-      );
+      // updateNetwork(
+      //   _supportedNetworks?.find(
+      //     (x: Network) => x?.chainId === defaultSourceNetwork
+      //   ) ?? _supportedNetworks?.[0]
+      // );
     }
   }, [allNetworks]);
 
