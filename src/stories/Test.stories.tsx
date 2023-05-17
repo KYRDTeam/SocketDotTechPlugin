@@ -19,7 +19,7 @@ const Template = (args: WidgetProps) => {
   const [provider, setProvider] = useState<any>();
   const [userAddress, setUserAddress] = useState<string>();
   const [chain, setChain] = useState<number>();
-  const [currentChain, setCurrentChain] = useState("56");
+  const [currentChain, setCurrentChain] = useState(56);
   const [tab, setTab] = useState("tab1");
   const fetchWalletData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
@@ -113,10 +113,10 @@ const Template = (args: WidgetProps) => {
               setCurrentChain(e.target.value);
             }}
           >
-            <option value="1">Ethereum</option>
-            <option value="137">Polygon</option>
-            <option value="56">BSC</option>
-            <option value="250">Fantom</option>
+            <option value={1}>Ethereum</option>
+            <option value={137}>Polygon</option>
+            <option value={56}>BSC</option>
+            <option value={250}>Fantom</option>
           </select>
         </div>
       )}
@@ -133,7 +133,7 @@ const Template = (args: WidgetProps) => {
               if (!network.chainId) return;
               if (+currentChain === inputChainId) return;
 
-              setCurrentChain(inputChainId.toString());
+              setCurrentChain(inputChainId);
             }}
           />
         </>

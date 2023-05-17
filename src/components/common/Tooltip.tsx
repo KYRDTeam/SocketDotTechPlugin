@@ -18,7 +18,6 @@ const ToolTip: FC<Props> = ({
     <div
       ref={container}
       onMouseEnter={({ clientX }) => {
-        console.log("test");
         if (!tooltipRef.current || !container.current) return;
         const { left } = container.current.getBoundingClientRect();
 

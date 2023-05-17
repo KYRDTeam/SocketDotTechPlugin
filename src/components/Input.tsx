@@ -55,7 +55,6 @@ export const Input = ({
     (state: any) => state.networks.sourceChainId
   );
 
-  console.log({ allNetworks });
   // Tokens
   const tokenList = useTokenList(customTokenList);
   const sourceToken = useSelector((state: any) => state.tokens.sourceToken);
@@ -147,7 +146,7 @@ export const Input = ({
 
   useEffect(() => {
     if (prevDefaultNetwork.current !== defaultSourceNetwork) {
-      if (!!supportedNetworks.length) {
+      if (!!supportedNetworks?.length) {
         const existChain = supportedNetworks.find(
           (e: any) => +e.chainId === +defaultSourceNetwork
         );
