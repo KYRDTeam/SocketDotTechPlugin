@@ -131,7 +131,7 @@ export const SwapSlippage = () => {
       </div>
 
       {showLowSlippageDisclaimer && (
-        <p className="text-sm text-yellow-400 mb-0 mt-4 text-left">
+        <p className="text-sm text-yellow-300 mb-0 mt-4 text-left">
           Transactions with extremely low slippage tolerance might be reverted
           because of very small market movement
           {/* <DisclaimerBox>
