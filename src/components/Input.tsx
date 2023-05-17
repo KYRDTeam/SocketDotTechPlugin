@@ -133,34 +133,29 @@ export const Input = ({
         );
       } else setSupportedNetworks(_supportedNetworks);
 
-      // updateNetwork(
-      //   _supportedNetworks?.find(
-      //     (x: Network) => x?.chainId === defaultSourceNetwork
-      //   ) ?? _supportedNetworks?.[0]
-      // );
+      updateNetwork(
+        _supportedNetworks?.find(
+          (x: Network) => x?.chainId === defaultSourceNetwork
+        ) ?? _supportedNetworks?.[0]
+      );
     }
   }, [allNetworks]);
 
   //check sync chain id between dapp and lib
-  const prevDefaultNetwork = useRef<any>(defaultSourceNetwork);
-
   useEffect(() => {
-    if (prevDefaultNetwork.current !== defaultSourceNetwork) {
-      if (!!supportedNetworks?.length) {
-        const existChain = supportedNetworks.find(
-          (e: any) => +e.chainId === +defaultSourceNetwork
-        );
+    if (!!supportedNetworks?.length) {
+      const existChain = supportedNetworks.find(
+        (e: any) => +e.chainId === +defaultSourceNetwork
+      );
 
-        if (existChain) {
-          prevDefaultNetwork.current = defaultSourceNetwork;
-          dispatch(setSourceChain(defaultSourceNetwork));
-          sourceToken &&
-            sourceToken?.chainId !== defaultSourceNetwork &&
-            dispatch(setSourceToken(null));
-        }
+      if (existChain) {
+        dispatch(setSourceChain(defaultSourceNetwork));
+        sourceToken &&
+          sourceToken?.chainId !== defaultSourceNetwork &&
+          dispatch(setSourceToken(null));
       }
     }
-  }, [defaultSourceNetwork, supportedNetworks, prevDefaultNetwork]);
+  }, [defaultSourceNetwork, supportedNetworks]);
 
   // For Input & tokens
   const inputAmountFromReduxState = useSelector(
