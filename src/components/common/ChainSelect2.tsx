@@ -33,7 +33,7 @@ function Option({
     <div
       className={`skt-w flex items-center cursor-pointer flex-shrink-0 ${
         selected
-          ? ""
+          ? "px-4 py-9px bg-gray-900 rounded-14px"
           : isActiveNetwork
           ? "px-4 py-2 bg-gray-900 hover:bg-gray-900 cursor-default"
           : "px-4 py-2 hover:bg-whiteAlpha-200"
@@ -81,11 +81,7 @@ export function ChainSelect({
   const { borderRadius } = customSettings.customization;
 
   useEffect(() => {
-    setFilteredNetworks(
-      networks?.filter((network) =>
-        SUPPORTED_BRIDGE_CHAINS.includes(network.chainId)
-      )
-    );
+    setFilteredNetworks(networks);
   }, [networks]);
 
   return (
@@ -95,7 +91,7 @@ export function ChainSelect({
           ? null
           : () => setOpenDropdown(!openDropdown)
       }
-      className={`skt-w relative px-4 py-9px bg-gray-900 rounded-14px ${
+      className={`skt-w relative rounded-14px ${
         openDropdown ? "bg-widget-interactive h-auto" : ""
       }`}
       // style={{ borderRadius: `calc(0.5rem * ${borderRadius})` }}

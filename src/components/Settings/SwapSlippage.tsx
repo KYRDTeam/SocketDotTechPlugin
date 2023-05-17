@@ -131,21 +131,21 @@ export const SwapSlippage = () => {
       </div>
 
       {showLowSlippageDisclaimer && (
-        <div>
-          <DisclaimerBox>
+        <p className="text-sm text-yellow-400 mb-0">
+          Transactions with extremely low slippage tolerance might be reverted
+          because of very small market movement
+          {/* <DisclaimerBox>
             Transactions with extremely low slippage tolerance might be reverted
             because of very small market movement
-          </DisclaimerBox>
-        </div>
+          </DisclaimerBox> */}
+        </p>
       )}
 
       {/* Input off limit disclaimer */}
       {showInputLimitDisclaimer && (
-        <div>
-          <DisclaimerBox>
-            Please input a value greater than 0 and less than 50
-          </DisclaimerBox>
-        </div>
+        <p className="text-sm text-red-400 mb-0">
+          Please input a value greater than 0 and less than 50
+        </p>
       )}
     </div>
   );

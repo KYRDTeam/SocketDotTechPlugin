@@ -19,6 +19,7 @@ const Template = (args: WidgetProps) => {
   const [provider, setProvider] = useState<any>();
   const [userAddress, setUserAddress] = useState<string>();
   const [chain, setChain] = useState<number>();
+  const [currentChain, setCurrentChain] = useState("56");
 
   const fetchWalletData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
@@ -81,6 +82,21 @@ const Template = (args: WidgetProps) => {
         <br />
         ChainId: {chain}
       </p>
+
+      <select
+        name="Select network"
+        id="cars"
+        value={currentChain}
+        onChange={(e: any) => {
+          setCurrentChain(e.target.value);
+        }}
+      >
+        <option value="1">Ethereum</option>
+        <option value="137">Polygon</option>
+        <option value="56">BSC</option>
+        <option value="250">Fantom</option>
+      </select>
+
       <div style={{ marginBottom: "30px" }}>
         {!userAddress && (
           <button
@@ -95,7 +111,11 @@ const Template = (args: WidgetProps) => {
           </button>
         )}
       </div>
-      <Bridge {...args} provider={provider} />
+      <Bridge
+        {...args}
+        provider={provider}
+        defaultSourceNetwork={+currentChain}
+      />
     </div>
   );
 };
@@ -140,9 +160,13 @@ Default.args = {
 
   // tokenList: MY_LIST,
   // tokenList: UNISWAP_DEFAULT_LIST,
-  // destNetworks: [10],
-  // sourceNetworks: [10],
-  defaultSourceNetwork: 137,
+  destNetworks: [
+    1, 56, 137, 25, 250, 43114, 42161, 1313161554, 8217, 101, 10, 5,
+  ],
+  sourceNetworks: [
+    1, 56, 137, 25, 250, 43114, 42161, 1313161554, 8217, 101, 10, 5,
+  ],
+
   // defaultDestNetwork: 1,
   // defaultSourceToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", // usdt
   // defaultDestToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
