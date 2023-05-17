@@ -20,7 +20,7 @@ const Template = (args: WidgetProps) => {
   const [userAddress, setUserAddress] = useState<string>();
   const [chain, setChain] = useState<number>();
   const [currentChain, setCurrentChain] = useState("56");
-
+  const [tab, setTab] = useState("tab1");
   const fetchWalletData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 
@@ -83,20 +83,6 @@ const Template = (args: WidgetProps) => {
         ChainId: {chain}
       </p>
 
-      <select
-        name="Select network"
-        id="cars"
-        value={currentChain}
-        onChange={(e: any) => {
-          setCurrentChain(e.target.value);
-        }}
-      >
-        <option value="1">Ethereum</option>
-        <option value="137">Polygon</option>
-        <option value="56">BSC</option>
-        <option value="250">Fantom</option>
-      </select>
-
       <div style={{ marginBottom: "30px" }}>
         {!userAddress && (
           <button
@@ -111,11 +97,47 @@ const Template = (args: WidgetProps) => {
           </button>
         )}
       </div>
-      <Bridge
-        {...args}
-        provider={provider}
-        defaultSourceNetwork={+currentChain}
-      />
+      <div>
+        <div onClick={() => setTab("tab1")}>tab1</div>
+        <div onClick={() => setTab("tab2")}>tab2</div>
+      </div>
+
+      {tab === "tab2" && (
+        <div>
+          <p>tab2</p>
+          <select
+            name="Select network"
+            id="cars"
+            value={currentChain}
+            onChange={(e: any) => {
+              setCurrentChain(e.target.value);
+            }}
+          >
+            <option value="1">Ethereum</option>
+            <option value="137">Polygon</option>
+            <option value="56">BSC</option>
+            <option value="250">Fantom</option>
+          </select>
+        </div>
+      )}
+
+      {tab === "tab1" && (
+        <>
+          <p>tab1</p>
+          <Bridge
+            {...args}
+            provider={provider}
+            defaultSourceNetwork={+currentChain}
+            onSourceNetworkChange={(network: any) => {
+              const inputChainId = Number(network?.chainId);
+              if (!network.chainId) return;
+              if (+currentChain === inputChainId) return;
+
+              setCurrentChain(inputChainId.toString());
+            }}
+          />
+        </>
+      )}
     </div>
   );
 };

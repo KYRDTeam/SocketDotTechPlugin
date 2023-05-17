@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Currency, Network, onNetworkChange, onTokenChange } from "../types";
 import { NATIVE_TOKEN_ADDRESS } from "../consts";
 
@@ -134,22 +134,30 @@ export const Input = ({
         );
       } else setSupportedNetworks(_supportedNetworks);
 
-      updateNetwork(
-        _supportedNetworks?.find(
-          (x: Network) => x?.chainId === defaultSourceNetwork
-        ) ?? _supportedNetworks?.[0]
-      );
+      // updateNetwork(
+      //   _supportedNetworks?.find(
+      //     (x: Network) => x?.chainId === defaultSourceNetwork
+      //   ) ?? _supportedNetworks?.[0]
+      // );
     }
   }, [allNetworks]);
 
+  const prevDefaultNetwork = useRef<any>(defaultSourceNetwork);
+
   useEffect(() => {
-    const newChain = supportedNetworks?.find(
-      (x: Network) => x?.chainId === defaultSourceNetwork
-    );
-    if (!!newChain) {
-      updateNetwork(newChain);
+    if (prevDefaultNetwork.current !== defaultSourceNetwork) {
+      prevDefaultNetwork.current = defaultSourceNetwork;
+      const newChain = supportedNetworks?.find(
+        (x: Network) => x?.chainId === defaultSourceNetwork
+      );
+      if (!!newChain) {
+        dispatch(setSourceChain(newChain?.chainId));
+        sourceToken &&
+          sourceToken?.chainId !== newChain?.chainId &&
+          dispatch(setSourceToken(null));
+      }
     }
-  }, [defaultSourceNetwork, supportedNetworks]);
+  }, [defaultSourceNetwork, supportedNetworks, prevDefaultNetwork]);
 
   // For Input & tokens
   const inputAmountFromReduxState = useSelector(
