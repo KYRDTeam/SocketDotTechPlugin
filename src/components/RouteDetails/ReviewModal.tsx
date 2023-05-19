@@ -237,15 +237,15 @@ export const ReviewModal = ({
               </>
             ) : (
               <RouteDetailRow label="Dex Name">
-                <>
+                <div className="flex items-center">
                   <img
                     src={swapData?.protocol?.icon}
-                    className="skt-w w-8 h-6 rounded-full border-widget-primary"
+                    className="skt-w w-5 h-5 rounded-md mr-2 border-widget-primary"
                   />
-                  <p className="capitalize">
+                  <p className="capitalize my-0">
                     {swapData?.protocol?.displayName}
                   </p>
-                </>
+                </div>
               </RouteDetailRow>
             )}
             <RouteDetailRow label="Source Gas Fee">

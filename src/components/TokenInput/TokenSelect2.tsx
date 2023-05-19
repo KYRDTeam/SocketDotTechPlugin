@@ -144,7 +144,7 @@ export const TokenSelect = (props: Props) => {
                 handleInput={(e) => handleSearchInput(e)}
               />
             </div>
-            <div className="skt-w overflow-y-auto lg:h-500px xl:h-700px">
+            <div className="skt-w overflow-y-auto sm:h-500px xl:h-700px">
               {displayTokens?.map((token: Currency) => {
                 const isNativeToken = compareAddressWeb3(
                   token?.address,

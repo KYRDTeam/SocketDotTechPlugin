@@ -40,13 +40,15 @@ export const TxStepDetails = ({
           completed;
         const currentTx = currentTxIndex === tx?.userTxIndex;
         const _txHash = txData?.[txIndex]?.txHash || txData?.[txIndex]?.hash;
-        const url = _txHash
-          ? getExplorerLink(
-              mappedChainData?.[tx?.chainId]?.explorers[0],
-              _txHash,
-              ExplorerDataType.TRANSACTION
-            )
-          : null;
+        // const url = _txHash
+        //   ? getExplorerLink(
+        //       mappedChainData?.[tx?.chainId]?.explorers[0],
+        //       _txHash,
+        //       ExplorerDataType.TRANSACTION
+        //     )
+        //   : null;
+
+        const url = _txHash ? `https://socketscan.io/tx/${_txHash}` : null;
 
         // function to return token details -
         // @returns - amount, chain id, symbol and protocol name.

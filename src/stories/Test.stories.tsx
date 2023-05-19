@@ -104,7 +104,6 @@ const Template = (args: WidgetProps) => {
 
       {tab === "tab2" && (
         <div>
-          <p>tab2</p>
           <select
             name="Select network"
             id="cars"
@@ -123,7 +122,6 @@ const Template = (args: WidgetProps) => {
 
       {tab === "tab1" && (
         <>
-          <p>tab1</p>
           <Bridge
             {...args}
             provider={provider}

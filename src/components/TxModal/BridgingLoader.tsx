@@ -104,8 +104,8 @@ export const BridgingLoader = ({
   };
 
   return (
-    <div className="skt-w absolute h-full w-full top-0 left-0 flex flex-col text-md">
-      <TokenDetailsRow
+    <div className="skt-w flex flex-col text-md">
+      {/* <TokenDetailsRow
         srcDetails={{
           token: currentRoute?.sourceTokenDetails?.token,
           amount: currentRoute?.sourceTokenDetails?.amount,
@@ -116,10 +116,10 @@ export const BridgingLoader = ({
         }}
         srcRefuel={refuelSourceToken}
         destRefuel={refuelDestToken}
-      />
-      <div className="skt-w border-b border-widget-secondary" />
+      /> */}
+      {/* <div className="skt-w border-b border-widget-secondary" /> */}
 
-      <div className="skt-w flex flex-col items-center my-auto pb-3">
+      <div className="skt-w flex flex-col items-center my-auto py-4">
         <Spinner size={10} />
         <div className="mt-4">
           <p className="skt-w text-widget-primary mb-2 font-medium text-center">

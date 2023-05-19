@@ -54,9 +54,10 @@ export const PendingTransactions = () => {
             title="Pending Transactions"
             closeModal={() => setIsModalOpen(false)}
             style={{ display: isModalOpen ? "block" : "none" }}
+            noPadding
           >
-            <div className="skt-w flex flex-col justify-start p-1 flex-1 overflow-y-auto">
-              <p className="skt-w text-widget-secondary text-xs px-3 py-2 text-left">
+            <div className="skt-w flex flex-col justify-start flex-1 overflow-y-auto">
+              <p className="skt-w px-8 text-widget-secondary text-xs py-2 text-left">
                 Transaction status is updated every 30 seconds
               </p>
 
@@ -88,7 +89,7 @@ export const PendingTransactions = () => {
                 );
               })}
 
-              <p className="skt-w text-widget-secondary text-xs px-3 py-2 text-left">
+              <p className="skt-w px-8 text-widget-secondary text-xs py-2 text-left">
                 Showing {activeRoutes?.length}/{totalRoutes} active routes
               </p>
             </div>

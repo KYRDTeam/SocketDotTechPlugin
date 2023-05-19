@@ -492,7 +492,7 @@ export const TxModal = ({
       disableClose={isApproving || txInProgress}
       style={style}
     >
-      <div className="skt-w flex flex-col flex-1 overflow-hidden justify-between relative">
+      <div className="skt-w flex flex-col flex-1 justify-between relative">
         <div className="skt-w flex-1 overflow-y-auto">
           <TokenDetailsRow
             srcDetails={{
@@ -533,6 +533,15 @@ export const TxModal = ({
             />
           </div>
         </div>
+
+        {bridging && !initiating && (
+          <BridgingLoader
+            currentRoute={currentRoute}
+            explorerParams={explorerParams}
+            txDetails={txDetails?.[userAddress]?.[activeRoute?.activeRouteId]}
+            refuelEnabled={!!currentRoute?.refuel}
+          />
+        )}
 
         <div className="skt-w p-3 shrink-0">
           {!txCompleted && (
@@ -602,15 +611,6 @@ export const TxModal = ({
             </>
           )}
         </div>
-
-        {bridging && !initiating && (
-          <BridgingLoader
-            currentRoute={currentRoute}
-            explorerParams={explorerParams}
-            txDetails={txDetails?.[userAddress]?.[activeRoute?.activeRouteId]}
-            refuelEnabled={!!currentRoute?.refuel}
-          />
-        )}
 
         {txCompleted && <SuccessToast />}
       </div>
