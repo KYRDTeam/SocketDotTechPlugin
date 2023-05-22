@@ -73,6 +73,12 @@ module.exports = {
 
         xl: "1280px",
         // => @media (min-width: 1280px) { ... }
+
+        "2xl": "1366px",
+        // => @media (min-width: 1366px) { ... }
+
+        "3xl": "1920px",
+        // => @media (min-width: 1920px) { ... }
       },
       textColor: {
         widget: {
