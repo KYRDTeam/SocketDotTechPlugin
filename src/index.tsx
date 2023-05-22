@@ -23,7 +23,8 @@ export const Bridge = (props: WidgetProps) => {
       <SWRConfig
         value={{
           suspense: false,
-          revalidateIfStale: false,
+          // NOTE: props revalidateIfStale: automatically revalidate even if there is stale data
+          revalidateIfStale: true,
           revalidateOnFocus: false,
         }}
       >
