@@ -18,6 +18,7 @@ import { useTokenList } from "../hooks/useTokenList";
 import useDebounce from "../hooks/useDebounce";
 
 import { Web3Context } from "../providers/Web3Provider";
+import { FormatterSupportedType } from "../consts";
 
 // Component that handles the destination chain parameters. (ToChain, Destination Token)
 // Shows the balance and the amount you receive for the selected route.
@@ -25,14 +26,17 @@ export const Output = ({
   customTokenList,
   onTokenChange,
   onNetworkChange,
+  ...props
 }: {
   customTokenList: string | Currency[];
   onTokenChange?: onTokenChange;
   onNetworkChange?: onNetworkChange;
+  [key: string]: any;
 }) => {
   const web3Context = useContext(Web3Context);
   const { userAddress } = web3Context.web3Provider;
   const dispatch = useDispatch();
+  const bestRoute = useSelector((state: any) => state.quotes.bestRoute);
 
   // Networks
   const allNetworks = useSelector((state: any) => state.networks.allNetworks);
@@ -272,6 +276,16 @@ export const Output = ({
           tokenToDisable={destToken}
           chainId={destChainId}
         />
+
+        {!!bestRoute?.route?.outputValueInUsd && (
+          <div className="flex justify-end text-whiteAlpha-500 text-md">
+            {!!props?.handleDisplayValue
+              ? props.handleDisplayValue(bestRoute?.route?.outputValueInUsd, {
+                  formatType: FormatterSupportedType.VALUE,
+                })
+              : ` ~$${bestRoute?.route?.outputValueInUsd}`}
+          </div>
+        )}
       </div>
     </div>
   );

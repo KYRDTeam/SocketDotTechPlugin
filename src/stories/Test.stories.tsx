@@ -4,6 +4,16 @@ import { SOCKET_API_KEY } from "../consts";
 import { ethers } from "ethers";
 import { transactionDetails, WidgetProps } from "../types";
 
+enum FormatterSupportedType {
+  VALUE = "value",
+  FEE = "fee",
+}
+
+type fmOptionsType = {
+  targetCurrency?: string;
+  formatType?: FormatterSupportedType;
+  format?: (value: string) => string;
+};
 declare global {
   interface Window {
     ethereum: any;
@@ -72,6 +82,14 @@ const Template = (args: WidgetProps) => {
     }
   }, [window.ethereum]);
 
+  const handleDisplayValue = (
+    value: number | string,
+    options?: fmOptionsType
+  ) => {
+    console.log({ value });
+    return `${value}BTC`;
+  };
+
   return (
     <div
       className="skt-w bg-gray-900 p-10 text-white-900"
@@ -124,8 +142,9 @@ const Template = (args: WidgetProps) => {
         <>
           <Bridge
             {...args}
+            handleDisplayValue={handleDisplayValue}
             provider={provider}
-            defaultSourceNetwork={+currentChain}
+            // defaultSourceNetwork={+currentChain}
             onSourceNetworkChange={(network: any) => {
               const inputChainId = Number(network?.chainId);
               if (!network.chainId) return;
@@ -187,9 +206,10 @@ Default.args = {
     1, 56, 137, 25, 250, 43114, 42161, 1313161554, 8217, 101, 10, 5,
   ],
 
-  // defaultDestNetwork: 1,
-  // defaultSourceToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", // usdt
-  // defaultDestToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+  defaultSourceNetwork: 137,
+  defaultDestNetwork: 56,
+  defaultSourceToken: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", // usdt
+  defaultDestToken: "0x55d398326f99059ff775485246999027b3197955",
   // defaultDestToken: "0x8c6f28f2F1A3C87F0f938b96d27520d9751ec8d9",
   // defaultSourceToken: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
   // defaultDestToken: "0xbe662058e00849C3Eef2AC9664f37fEfdF2cdbFE",

@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { CustomizeContext } from "../../providers/CustomizeProvider";
-import { BRIDGE_DISPLAY_NAMES, UserTxType } from "../../consts/";
+import {
+  BRIDGE_DISPLAY_NAMES,
+  FormatterSupportedType,
+  UserTxType,
+} from "../../consts/";
 
 // components
 import { Button } from "../common/Button";
@@ -26,9 +30,11 @@ import { useGetGasLimitFromUserTxs } from "../../hooks/useGetGasLimitFromUserTxs
 export const ReviewModal = ({
   closeModal,
   style,
+  ...props
 }: {
   closeModal: () => void;
   style?: any;
+  [key: string]: any;
 }) => {
   const dispatch = useDispatch();
   const bestRoute = useSelector((state: any) => state.quotes.bestRoute);
@@ -232,6 +238,7 @@ export const ReviewModal = ({
                     feeInToken={bridgeFeeInToken}
                     feeInUsd={bridgeFee}
                     tokenSymbol={bridgeFeeTokenSymbol}
+                    {...props}
                   />
                 </RouteDetailRow>
               </>
@@ -253,6 +260,7 @@ export const ReviewModal = ({
                 feeInToken={sourceFeesInToken}
                 feeInUsd={sourceFeesInUSD}
                 tokenSymbol={sourceNativeToken?.symbol}
+                {...props}
               />
             </RouteDetailRow>
             {!!destFeesInToken && !isSameChainSwap && (
@@ -262,6 +270,7 @@ export const ReviewModal = ({
                     feeInToken={destFeesInToken}
                     feeInUsd={destFeesInUSD}
                     tokenSymbol={destNativeToken?.symbol}
+                    {...props}
                   />
                 </RouteDetailRow>
                 <RouteDetailRow
@@ -382,6 +391,7 @@ interface FeeDisplayProps {
   feeInToken: string;
   tokenSymbol: string | undefined;
   feeInUsd: number;
+  [key: string]: any;
 }
 
 const FeeDisplay = (props: FeeDisplayProps) => {
@@ -396,7 +406,17 @@ const FeeDisplay = (props: FeeDisplayProps) => {
         ) : (
           0
         )}
-        {feeInUsd !== 0 && <span>(${feeInUsd?.toFixed(4)})</span>}
+        {feeInUsd !== 0 && (
+          <span>
+            (
+            {props.handleDisplayValue
+              ? props.handleDisplayValue(feeInUsd, {
+                  formatType: FormatterSupportedType.VALUE,
+                })
+              : `$${feeInUsd?.toFixed(4)}`}
+            )
+          </span>
+        )}
       </span>
     );
   } else return null;

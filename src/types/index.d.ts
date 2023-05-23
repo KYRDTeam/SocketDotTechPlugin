@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ChainId, UserTxType } from "@socket.tech/socket-v2-sdk";
+import { FormatterSupportedType } from "../consts";
 type supportedBridges =
   | "polygon-bridge"
   | "hop"
@@ -30,6 +31,11 @@ export interface transactionDetails {
 export type onNetworkChange = (network: Network) => void;
 export type onTokenChange = (token: Currency) => void;
 
+export type fmOptionsType = {
+  targetCurrency?: string;
+  formatType?: FormatterSupportedType;
+  format?: (value: string) => string;
+};
 export interface WidgetProps {
   API_KEY: string;
   provider?: any;
@@ -99,6 +105,11 @@ export interface WidgetProps {
   locale?: string;
   title?: ReactNode | string;
   customize?: Customize;
+
+  handleDisplayValue?: (
+    value: number | string,
+    options?: fmOptionsType
+  ) => string;
 }
 
 export interface Customize {

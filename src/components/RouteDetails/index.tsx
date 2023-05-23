@@ -267,6 +267,7 @@ export const RouteDetails = ({ ...props }) => {
         <ReviewModal
           closeModal={() => setIsReviewOpen(false)}
           style={{ display: isReviewOpen ? "block" : "none" }}
+          {...props}
         />
       )}
     </InnerCard>

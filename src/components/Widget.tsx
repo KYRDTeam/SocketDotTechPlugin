@@ -130,6 +130,7 @@ export const Widget = (props: WidgetProps) => {
           customTokenList={props.tokenList}
           onTokenChange={props.onSourceTokenChange}
           onNetworkChange={props.onSourceNetworkChange}
+          {...props}
         />
         <div className="flex justify-center py-4">
           <SwapIcon />
@@ -139,6 +140,7 @@ export const Widget = (props: WidgetProps) => {
           customTokenList={props.tokenList}
           onTokenChange={props.onDestinationTokenChange}
           onNetworkChange={props.onDestinationNetworkChange}
+          {...props}
         />
         {/* {props.enableRefuel && <Refuel />} */}
       </div>

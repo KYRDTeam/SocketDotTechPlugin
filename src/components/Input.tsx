@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Currency, Network, onNetworkChange, onTokenChange } from "../types";
-import { NATIVE_TOKEN_ADDRESS } from "../consts";
+import { FormatterSupportedType, NATIVE_TOKEN_ADDRESS } from "../consts";
 
 // component
 import { TokenInput } from "./TokenInput";
@@ -39,15 +39,18 @@ export const Input = ({
   customTokenList,
   onTokenChange,
   onNetworkChange,
+  ...props
 }: {
   customTokenList: string | Currency[];
   onTokenChange?: onTokenChange;
   onNetworkChange?: onNetworkChange;
+  [key: string]: any;
 }) => {
   const web3Context = useContext(Web3Context);
   const { userAddress } = web3Context.web3Provider;
   const mappedChainData = useMappedChainData();
   const dispatch = useDispatch();
+  const bestRoute = useSelector((state: any) => state.quotes.bestRoute);
 
   // Networks
   const allNetworks = useSelector((state: any) => state.networks.allNetworks);
@@ -374,6 +377,25 @@ export const Input = ({
           tokenToDisable={sourceToken}
           chainId={sourceChainId}
         />
+        {/* {!!bestRoute?.route?.inputValueInUsd && (
+          <div className="flex justify-end text-whiteAlpha-500 text-md">
+            {!!props?.handleDisplayValue
+              ? !!props.handleDisplayValue(bestRoute?.route?.inputValueInUsd, {
+                  formatType: FormatterSupportedType.VALUE,
+                })
+              : `~$${bestRoute?.route?.inputValueInUsd}`}
+          </div>
+        )} */}
+
+        {!!bestRoute?.route?.inputValueInUsd && (
+          <div className="flex justify-end text-whiteAlpha-500 text-md">
+            {!!props?.handleDisplayValue
+              ? props.handleDisplayValue(bestRoute?.route?.inputValueInUsd, {
+                  formatType: FormatterSupportedType.VALUE,
+                })
+              : ` ~$${bestRoute?.route?.inputValueInUsd}`}
+          </div>
+        )}
       </div>
     </div>
   );

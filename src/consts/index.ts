@@ -97,3 +97,9 @@ export const SUPPORTED_BRIDGE_CHAINS = [
   ChainId.KLAYTN,
   ChainId.OPTIMISM,
 ];
+
+export enum FormatterSupportedType {
+  VALUE = "value",
+  FEE = "fee",
+  TVL = "tvl",
+}
